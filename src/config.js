@@ -5,11 +5,6 @@ const modes = {
   PP: 'passphrase'
 };
 
-const initPrefs = {
-  numSecrets: 3,
-  autoCopy: false
-};
-
 const initParams = {
   [modes.PW]: {
     length: 16,
@@ -26,14 +21,12 @@ const initParams = {
 
 const localStorageKeys = {
   params: `pwgen-joeb-dev-params-${version}`,
-  prefs: `pwgen-joeb-dev-prefs-${version}`,
   mode: `pwgen-joeb-dev-mode-${version}`
 };
 
 export default {
   version,
   modes,
-  initPrefs,
   initParams,
   localStorageKeys
 };
