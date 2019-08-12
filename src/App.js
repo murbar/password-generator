@@ -3,50 +3,23 @@ import styled from 'styled-components';
 import Header from 'components/Header';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
-import { fireHotKey, convertToCharCodeArray, convertToString, quadOut } from 'helpers';
-import {
-  generatePassphrases,
-  generatePasswords,
-  generatePassword,
-  generatePassphrase
-} from 'generators';
+import { fireHotKey } from 'helpers';
+import { generatePassphrases, generatePasswords } from 'generators';
 import config from 'config';
 import FormField from 'components/common/FormField';
 import Label from 'components/common/Label';
 import Input from 'components/common/Input';
 import PasswordParams from 'components/PasswordParams';
 import PassphraseParams from 'components/PassphraseParams';
-import { animated, useSprings, useTransition } from 'react-spring';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import Outputs from 'components/Outputs';
 
 const Styles = styled.div`
   margin: 0 2rem;
 `;
 
-const Output = styled.div``;
-
-const Secrets = styled.div`
-  background: teal;
-  padding: 1em;
-  border-radius: 0.5em;
-  color: white;
-`;
-
-const Secret = styled.div`
-  font-family: ${p => p.theme.fontFamilyFixed};
-  /* font-weight: 500; */
-  margin-bottom: 1rem;
-  font-size: 1.25em;
-  line-height: 1;
-  &:last-child {
-    margin-bottom: 0;
-  }
-`;
-
-const AnimatedSecret = animated(Secret);
-
 function App() {
-  const { localStorageKeys, modes, initParams } = config;
+  const { localStorageKeys, modes, initPrefs, initParams } = config;
+  const [prefs, setPrefs] = useLocalStorageState(localStorageKeys.prefs, initPrefs);
   const [params, setParams] = useLocalStorageState(localStorageKeys.params, initParams);
   const [mode, setMode] = useLocalStorageState(localStorageKeys.mode, modes.PP);
   const [outputs, setOutputs] = useState({
@@ -56,44 +29,57 @@ function App() {
 
   const handleInputChange = e => {
     let { name, value, type, checked } = e.target;
+    const prefsNames = ['autoCopy'];
 
     if (type === 'range' || type === 'number') value = parseInt(value);
     if (type === 'checkbox') value = checked;
-
     if (type === 'checkbox' && mode === modes.PW) {
       const lastChecked =
         ['upper', 'lower', 'numbers', 'symbols'].map(n => params[mode][n]).filter(v => v).length ===
         1;
+      // user should select at least one option
       if (!value && lastChecked) return;
     }
 
-    setParams(prev => ({
-      ...prev,
-      [mode]: {
-        ...prev[mode],
-        [name]: value
-      }
-    }));
+    if (prefsNames.includes(name)) {
+      console.log('pref');
+      setPrefs(prev => ({ ...prev, [name]: value }));
+    } else {
+      console.log('param');
+      setParams(prev => ({
+        ...prev,
+        [mode]: {
+          ...prev[mode],
+          [name]: value
+        }
+      }));
+    }
   };
 
   const generate = useCallback(() => {
     const generateFunction = mode === modes.PW ? generatePasswords : generatePassphrases;
-    setOutputs(prev => ({
-      ...prev,
-      [mode]: generateFunction(params.numSecrets, params[mode])
-    }));
-  }, [mode, modes, params]);
+    setOutputs(prev => {
+      console.log('generate running');
+
+      return {
+        ...prev,
+        [mode]: generateFunction(params.numSecrets, params[mode])
+      };
+    });
+  }, [mode, modes.PW, params]);
 
   useEffect(() => {
+    console.log('effect running');
     generate();
   }, [generate]);
 
   useHotKeys({
     l: e => {
       fireHotKey(e, () => {
-        console.log(params);
-        console.log(mode);
-        console.log(outputs);
+        console.log('params', params);
+        console.log('prefs', prefs);
+        console.log('mode', mode);
+        console.log('outputs', outputs);
       });
     },
     c: e => {
@@ -101,24 +87,12 @@ function App() {
         // copy secret to clipboard
       });
     },
-    r: e => {
+    g: e => {
       fireHotKey(e, () => {
         generate();
       });
     }
   });
-
-  const secrets = outputs[mode].map(s => convertToCharCodeArray(s));
-  const stubs = outputs[mode].map(() =>
-    convertToCharCodeArray(generatePassword(secrets[0].length))
-  );
-  const transitions = useSprings(
-    secrets.length,
-    secrets.map((s, i) => ({
-      from: { string: stubs[i] },
-      string: s
-    }))
-  );
 
   // maybe pad the array to 100 since teh string will never be longer than that
 
@@ -153,6 +127,17 @@ function App() {
           />
         </Label>
       </FormField>
+      <FormField>
+        <Label>
+          Auto copy
+          <Input
+            type="checkbox"
+            name="autoCopy"
+            checked={prefs.autoCopy}
+            onChange={handleInputChange}
+          />
+        </Label>
+      </FormField>
       <button onClick={() => generate()}>Regenerate</button>
 
       <h2>Parameters</h2>
@@ -160,24 +145,7 @@ function App() {
       {mode === modes.PW && <PasswordParams params={params} onChange={handleInputChange} />}
       {mode === modes.PP && <PassphraseParams params={params} onChange={handleInputChange} />}
 
-      <Output>
-        <h2>Result</h2>
-        <Secrets>
-          {transitions.map((s, i) => (
-            <CopyToClipboard
-              key={i}
-              text={secrets[i]}
-              onCopy={() => {
-                console.log('Copied', secrets[i]);
-              }}
-            >
-              <AnimatedSecret>
-                {s.string.interpolate((...chars) => convertToString(chars))}
-              </AnimatedSecret>
-            </CopyToClipboard>
-          ))}
-        </Secrets>
-      </Output>
+      <Outputs secrets={outputs[mode]} />
     </Styles>
   );
 }
