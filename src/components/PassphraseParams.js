@@ -21,7 +21,7 @@ export default function PassphraseParams({ params, onChange }) {
             name="length"
             value={values.length}
             min="3"
-            max="10"
+            max="8"
             onChange={onChange}
           />
         </Label>

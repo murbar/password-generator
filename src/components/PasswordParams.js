@@ -20,7 +20,7 @@ export default function PasswordParams({ params, onChange }) {
             name="length"
             value={values.length}
             min="8"
-            max="88"
+            max="48"
             onChange={onChange}
           />
         </Label>
