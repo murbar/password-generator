@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { animated, useSprings } from 'react-spring';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
+import copy from 'copy-to-clipboard';
 import { generatePassword } from 'generators';
 import { convertToCharCodeArray, convertToStringAndFilterType, padArray } from 'helpers';
 
@@ -37,13 +37,13 @@ config reset -> true resolves artifact where additional chars don't animate afte
 */
 
 export default function Outputs({ secrets }) {
-  const lastLength = React.useRef(0);
+  const lastLength = useRef(0);
   const charArrays = secrets.map(s => convertToCharCodeArray(s)).map(a => padArray(a, '', 100));
   const [transitions, setTransitions] = useSprings(charArrays.length, i => ({
     from: { chars: convertToCharCodeArray(generatePassword(100)) }
   }));
 
-  // reset animation only if secret length has changed
+  // reset animation only if length of output has changed
   charArrays.forEach(() => {
     const length = secrets[0].length;
     const lengthChanged = lastLength.current !== length;
@@ -53,21 +53,16 @@ export default function Outputs({ secrets }) {
 
   return (
     <Styles>
-      <h2>Result</h2>
       <Secrets>
         {transitions.map((s, i) => (
-          <CopyToClipboard
+          <AnimatedSecret
             key={i}
-            text={secrets[i]}
-            onCopy={() => {
-              // notify user
-              console.log(`${secrets[i]} copied`);
+            onClick={() => {
+              copy(secrets[i]);
             }}
           >
-            <AnimatedSecret>
-              {s.chars.interpolate((...chars) => convertToStringAndFilterType(chars, 'number'))}
-            </AnimatedSecret>
-          </CopyToClipboard>
+            {s.chars.interpolate((...chars) => convertToStringAndFilterType(chars, 'number'))}
+          </AnimatedSecret>
         ))}
       </Secrets>
     </Styles>
