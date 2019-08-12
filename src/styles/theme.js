@@ -15,6 +15,9 @@ const theme = {
   },
   inputBorderRadius: `0.5rem`,
   fontFamily: "'Nunito', sans-serif",
+  // fontFamilyHeadings: "'Bungee', sans-serif",
+  // fontFamilyFixed: "'Source Code Pro', sans-serif",
+  fontFamilyFixed: "'Roboto Mono', sans-serif",
   media
 };
 
