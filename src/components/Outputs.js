@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { animated, useSprings } from 'react-spring';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { generatePassword } from 'generators';
-import { convertToCharCodeArray, convertToString, padArray } from 'helpers';
+import { convertToCharCodeArray, convertToStringAndFilterType, padArray } from 'helpers';
 
 const Styles = styled.div``;
 
@@ -65,7 +65,7 @@ export default function Outputs({ secrets }) {
             }}
           >
             <AnimatedSecret>
-              {s.chars.interpolate((...chars) => convertToString(chars))}
+              {s.chars.interpolate((...chars) => convertToStringAndFilterType(chars, 'number'))}
             </AnimatedSecret>
           </CopyToClipboard>
         ))}
