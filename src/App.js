@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
+import copy from 'copy-to-clipboard';
 import Header from 'components/Header';
-import useLocalStorageState from 'hooks/useLocalStorageState';
-import useHotKeys from 'hooks/useHotKeys';
-import { fireHotKey } from 'helpers';
-import { generatePassphrases, generatePasswords } from 'generators';
-import config from 'config';
-import FormField from 'components/common/FormField';
 import Label from 'components/common/Label';
 import Input from 'components/common/Input';
 import PasswordParams from 'components/PasswordParams';
 import PassphraseParams from 'components/PassphraseParams';
 import Outputs from 'components/Outputs';
+import FormField from 'components/common/FormField';
+import useLocalStorageState from 'hooks/useLocalStorageState';
+import useHotKeys from 'hooks/useHotKeys';
+import config from 'config';
+import { fireHotKey } from 'helpers';
+import { generatePassphrases, generatePasswords } from 'generators';
 
 const Styles = styled.div`
   margin: 0 2rem;
 `;
 
 function App() {
-  const { localStorageKeys, modes, initPrefs, initParams } = config;
-  const [prefs, setPrefs] = useLocalStorageState(localStorageKeys.prefs, initPrefs);
+  const { localStorageKeys, modes, initParams } = config;
   const [params, setParams] = useLocalStorageState(localStorageKeys.params, initParams);
   const [mode, setMode] = useLocalStorageState(localStorageKeys.mode, modes.PP);
   const [outputs, setOutputs] = useState({
@@ -29,7 +29,7 @@ function App() {
 
   const handleInputChange = e => {
     let { name, value, type, checked } = e.target;
-    const prefsNames = ['autoCopy'];
+    // const prefsNames = ['autoCopy'];
 
     if (type === 'range' || type === 'number') value = parseInt(value);
     if (type === 'checkbox') value = checked;
@@ -41,26 +41,22 @@ function App() {
       if (!value && lastChecked) return;
     }
 
-    if (prefsNames.includes(name)) {
-      console.log('pref');
-      setPrefs(prev => ({ ...prev, [name]: value }));
-    } else {
-      console.log('param');
-      setParams(prev => ({
-        ...prev,
-        [mode]: {
-          ...prev[mode],
-          [name]: value
-        }
-      }));
-    }
+    // if (prefsNames.includes(name)) {
+    //   setPrefs(prev => ({ ...prev, [name]: value }));
+    // } else {
+    setParams(prev => ({
+      ...prev,
+      [mode]: {
+        ...prev[mode],
+        [name]: value
+      }
+    }));
+    // }
   };
 
   const generate = useCallback(() => {
     const generateFunction = mode === modes.PW ? generatePasswords : generatePassphrases;
     setOutputs(prev => {
-      console.log('generate running');
-
       return {
         ...prev,
         [mode]: generateFunction(params.numSecrets, params[mode])
@@ -69,7 +65,6 @@ function App() {
   }, [mode, modes.PW, params]);
 
   useEffect(() => {
-    console.log('effect running');
     generate();
   }, [generate]);
 
@@ -77,14 +72,13 @@ function App() {
     l: e => {
       fireHotKey(e, () => {
         console.log('params', params);
-        console.log('prefs', prefs);
         console.log('mode', mode);
         console.log('outputs', outputs);
       });
     },
     c: e => {
       fireHotKey(e, () => {
-        // copy secret to clipboard
+        copy(outputs[mode][0]);
       });
     },
     g: e => {
@@ -93,8 +87,6 @@ function App() {
       });
     }
   });
-
-  // maybe pad the array to 100 since teh string will never be longer than that
 
   return (
     <Styles>
@@ -127,24 +119,13 @@ function App() {
           />
         </Label>
       </FormField>
-      <FormField>
-        <Label>
-          Auto copy
-          <Input
-            type="checkbox"
-            name="autoCopy"
-            checked={prefs.autoCopy}
-            onChange={handleInputChange}
-          />
-        </Label>
-      </FormField>
       <button onClick={() => generate()}>Regenerate</button>
 
-      <h2>Parameters</h2>
-
+      <h2>Options</h2>
       {mode === modes.PW && <PasswordParams params={params} onChange={handleInputChange} />}
       {mode === modes.PP && <PassphraseParams params={params} onChange={handleInputChange} />}
 
+      <h2>Secrets</h2>
       <Outputs secrets={outputs[mode]} />
     </Styles>
   );
