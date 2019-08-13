@@ -1,38 +1,85 @@
 import React from 'react';
 import styled from 'styled-components';
-import FormField from 'components/common/FormField';
-import Label from 'components/common/Label';
-import Input from 'components/common/Input';
+import InputRow from 'components/common/InputRow';
+import RangeSlider from 'components/common/RangeSlider';
+import RadioButton from 'components/common/RadioButton';
 import config from 'config';
+import { media } from 'styles/helpers';
 
-const Styles = styled.div``;
+const Styles = styled.div`
+  .radios {
+    > div {
+      flex-basis: 50%;
+      margin-right: 0;
+    }
+  }
+  ${media.tablet`    
+  .radios {
+    > div {
+      flex-basis: auto;
+      margin-right: 3rem;
+    }
+  }
+  `}
+`;
 
-export default function PassphraseParams({ params, onChange }) {
+const Slider = styled(RangeSlider)`
+  ${media.tablet`
+    width: 70%;
+  `}
+`;
+
+export default function PassphraseParams({ values, onChange }) {
   const { modes } = config;
-  const values = params[modes.PP];
+  const ppValues = values[modes.PP];
 
   return (
     <Styles>
-      <FormField>
-        <Label>
-          Length
-          <Input
-            type="range"
-            name="length"
-            value={values.length}
-            min="3"
-            max="8"
-            onChange={onChange}
-          />
-        </Label>
-        {values.length}
-      </FormField>
-      <FormField>
-        <Label>
-          Delimiter
-          <Input type="text" name="delimiter" value={values.delimiter || '-'} onChange={onChange} />
-        </Label>
-      </FormField>
+      <p>
+        Long passphrases are much easier to remember (and type!) and can be just as secure as a
+        random string of characters for most uses.
+      </p>
+      <InputRow>
+        <Slider
+          label="Word count"
+          name="length"
+          value={ppValues.length}
+          min={3}
+          max={8}
+          onChange={onChange}
+        />
+      </InputRow>
+      Delimiter
+      <InputRow className="radios">
+        <RadioButton
+          label="Hyphen"
+          name="delimiter"
+          value="hyphen"
+          checked={ppValues.delimiter === 'hyphen'}
+          onChange={onChange}
+        />
+        <RadioButton
+          label="Space"
+          name="delimiter"
+          value="space"
+          checked={ppValues.delimiter === 'space'}
+          onChange={onChange}
+        />
+        <RadioButton
+          label="Period"
+          name="delimiter"
+          value="period"
+          checked={ppValues.delimiter === 'period'}
+          onChange={onChange}
+        />
+        <RadioButton
+          label="123"
+          name="delimiter"
+          value="number"
+          checked={ppValues.delimiter === 'number'}
+          onChange={onChange}
+        />
+      </InputRow>
     </Styles>
   );
 }
