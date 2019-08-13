@@ -4,8 +4,8 @@ import SecretTween from 'components/common/SecretTween';
 import { media } from 'styles/helpers';
 
 const Styles = styled.header`
+  padding: 2rem 0;
   h1 {
-    margin: 2.5rem 0;
     line-height: 1;
   }
   span {
@@ -21,6 +21,7 @@ const Styles = styled.header`
     }
   }
   ${media.tablet`
+    padding: 3rem 0;
     span {
       display: block;
       &:first-child {
@@ -34,7 +35,7 @@ const Styles = styled.header`
     }
   `}
   ${media.desktop`
-    margin: 5rem 0;
+    padding: 6rem 0 3rem;
   `}
 `;
 

@@ -10,6 +10,7 @@ const colors = {
   blue: 'hsl(195, 100%, 50%)',
   green: 'hsl(150, 100%, 50%)',
   fuchsia: 'hsl(300, 100%, 65%)',
+  paleYellow: 'hsl(60, 100%, 75%)',
   lightGrey: '#cccccc',
   darkGrey: '#333333'
 };

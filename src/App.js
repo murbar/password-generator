@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
+import GlobalStyles from 'styles/global';
 import copy from 'copy-to-clipboard';
 import Header from 'components/Header';
 import Params from 'components/Params';
@@ -100,6 +101,7 @@ function App() {
 
   return (
     <Styles>
+      <GlobalStyles />
       <Header />
       <ChoiceToggle
         choices={{ Password: modes.PW, Passphrase: modes.PP }}
