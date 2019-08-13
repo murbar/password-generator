@@ -1,12 +1,26 @@
 import React from 'react';
 import styled from 'styled-components';
+import SecretTween from 'components/common/SecretTween';
+import { media } from 'styles/helpers';
 
 const Styles = styled.header`
   h1 {
-    padding: 2.5rem 0;
-    font-weight: 400;
+    margin: 2.5rem 0;
     line-height: 1;
-    color: #ff4dff;
+  }
+  span {
+    display: block;
+    &:first-child {
+      font-size: 1.2em;
+    }
+    &:nth-child(2) {
+      font-size: 1em;
+    }
+    &:nth-child(3) {
+      font-size: 0.8em;
+    }
+  }
+  ${media.tablet`
     span {
       display: block;
       &:first-child {
@@ -18,15 +32,25 @@ const Styles = styled.header`
         font-size: 0.9em;
       }
     }
-  }
+  `}
+  ${media.desktop`
+    margin: 5rem 0;
+  `}
 `;
 
 export default function Header() {
   return (
     <Styles>
       <h1>
-        <span>Generate</span> <span>secure passwords</span>
-        <span>instantly</span>
+        <span>
+          <SecretTween duration={500}>Generate</SecretTween>
+        </span>
+        <span>
+          <SecretTween>secure passwords</SecretTween>
+        </span>
+        <span>
+          <SecretTween>instantly</SecretTween>
+        </span>
       </h1>
     </Styles>
   );
