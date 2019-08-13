@@ -2,13 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
 import SecretTween from 'components/common/SecretTween';
+import { media } from 'styles/helpers';
 
 const Styles = styled.div`
   background: ${p => p.theme.colors.offBlack};
-  padding: 0.75em;
-  border-radius: 0.2rem;
   color: ${p => p.theme.colors.offWhite};
-  margin: 1.5rem 0;
+  margin: 1.5rem -2rem;
+  padding: 2rem;
+  ${media.tablet`
+  padding: 1.5rem;
+    border-radius: ${p => p.theme.borderRadius};
+    margin: 1.5rem 0;
+  `}
 `;
 
 const Secret = styled.div`
@@ -19,7 +24,7 @@ const Secret = styled.div`
   text-align: center;
   padding: 0.5em;
   background: hsla(0, 0%, 100%, 0.15);
-  border-radius: 0.2rem;
+  border-radius: ${p => p.theme.borderRadius};
   overflow-wrap: break-word;
   position: relative;
   &:last-child {
