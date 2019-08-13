@@ -24,9 +24,16 @@ const localStorageKeys = {
   mode: `pwgen-joeb-dev-mode-${version}`
 };
 
+const strengthsEnum = {
+  OK: 'kinda weak',
+  GOOD: 'pretty decent',
+  STRONG: 'super strong'
+};
+
 export default {
   version,
   modes,
   initParams,
-  localStorageKeys
+  localStorageKeys,
+  strengthsEnum
 };
