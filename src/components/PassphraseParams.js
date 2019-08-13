@@ -27,6 +27,12 @@ export default function PassphraseParams({ params, onChange }) {
         </Label>
         {values.length}
       </FormField>
+      <FormField>
+        <Label>
+          Delimiter
+          <Input type="text" name="delimiter" value={values.delimiter || '-'} onChange={onChange} />
+        </Label>
+      </FormField>
     </Styles>
   );
 }
