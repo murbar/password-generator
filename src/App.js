@@ -2,13 +2,12 @@ import React, { useState, useEffect, useCallback } from 'react';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
 import Header from 'components/Header';
-import Label from 'components/common/Label';
-import Input from 'components/common/Input';
-import PasswordParams from 'components/PasswordParams';
-import PassphraseParams from 'components/PassphraseParams';
+import Params from 'components/Params';
 import Secrets from 'components/Secrets';
-import Inputs from 'components/Inputs';
-import FormField from 'components/common/FormField';
+import Disclaimer from 'components/Disclaimer';
+import Tips from 'components/Tips';
+import Instructions from 'components/Instructions';
+import Button from 'components/common/Button';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import config from 'config';
@@ -16,10 +15,22 @@ import { fireHotKey } from 'helpers';
 import { generatePassphrases, generatePasswords } from 'cryptoLogic';
 import Stats from 'components/Stats';
 import { getEntropy } from 'cryptoLogic';
+import { ReactComponent as RefreshIcon } from 'images/repeat.svg';
+import { media } from 'styles/helpers';
+import ChoiceToggle from 'components/common/ChoiceToggle';
 
 const Styles = styled.div`
   margin: 0 auto;
-  max-width: 66rem;
+  ${media.tablet`
+    max-width: 66rem;
+  `}
+`;
+
+const RegenerateButton = styled(Button)`
+  svg {
+    transform: rotate(35deg);
+    margin-right: 0.75em;
+  }
 `;
 
 function App() {
@@ -34,7 +45,6 @@ function App() {
 
   const handleInputChange = e => {
     let { name, value, type, checked } = e.target;
-    // const prefsNames = ['autoCopy'];
 
     if (type === 'range' || type === 'number') value = parseInt(value);
     if (type === 'checkbox') value = checked;
@@ -52,7 +62,6 @@ function App() {
         [name]: value
       }
     }));
-    // }
   };
 
   const generate = useCallback(() => {
@@ -92,52 +101,20 @@ function App() {
   return (
     <Styles>
       <Header />
-
-      <FormField>
-        <Label>
-          Password
-          <Input
-            type="radio"
-            name="mode"
-            value={modes.PW}
-            checked={mode === modes.PW}
-            onChange={() => setMode(modes.PW)}
-          />
-        </Label>
-        <Label>
-          Passphrase
-          <Input
-            type="radio"
-            name="mode"
-            value={modes.PP}
-            checked={mode === modes.PP}
-            onChange={() => setMode(modes.PP)}
-          />
-        </Label>
-      </FormField>
-      <button onClick={() => generate()}>Regenerate</button>
-
-      <h2>Options</h2>
-      {mode === modes.PW && <PasswordParams params={params} onChange={handleInputChange} />}
-      {mode === modes.PP && <PassphraseParams params={params} onChange={handleInputChange} />}
-
+      <ChoiceToggle
+        choices={{ Password: modes.PW, Passphrase: modes.PP }}
+        initial={mode === modes.PW ? 'Password' : 'Passphrase'}
+        onToggle={m => setMode(m)}
+      />
+      <Params mode={mode} values={params} onChange={handleInputChange} />
       <Stats entropy={entropy} />
-
-      <h2>Secrets</h2>
-      <ol>
-        <li>Pick one, any one</li>
-        <li>Click to copy</li>
-        <li>Enjoy the rest of your day</li>
-      </ol>
+      <Instructions />
+      <RegenerateButton onClick={() => generate()} title="Generate new secrets">
+        <RefreshIcon /> Re-gen
+      </RegenerateButton>
       <Secrets outputs={outputs[mode]} />
-
-      <p>
-        * Your secrets are generated on this device and are not transmitted or persisted in any way.
-        Just look out for nosy parkers and close this browser tab when you're done.
-      </p>
-
-      <h2>Tips</h2>
-      <Inputs />
+      <Disclaimer />
+      <Tips />
     </Styles>
   );
 }
