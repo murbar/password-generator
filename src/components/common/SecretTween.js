@@ -1,29 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { animated, useSpring } from 'react-spring';
-
-const charArrays = {
-  upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
-  lower: 'abcdefghijklmnopqrstuvwxyz'.split(''),
-  numbers: '0123456789'.split('')
-};
-
-const randomChoice = array => {
-  return array[Math.floor(Math.random() * array.length)];
-};
-
-const scrambleString = string => {
-  const chars = string.split('');
-  const { upper, lower, numbers } = charArrays;
-  return chars
-    .map(c => {
-      if (upper.includes(c)) return randomChoice(upper);
-      if (lower.includes(c)) return randomChoice(lower);
-      if (numbers.includes(c)) return randomChoice(numbers);
-      return c;
-    })
-    .join('');
-};
+import { generatePassword } from 'cryptoLogic';
 
 const convertToCharCodeArray = string => {
   return string.split('').map(ch => ch.charCodeAt(0));
@@ -35,7 +13,7 @@ const convertToString = charCodeArray => {
 
 // does not perform well with lengths > 100
 export default function StringTween({ children, duration = null }) {
-  const from = convertToCharCodeArray(scrambleString(children));
+  const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
   const config = {
     from: {

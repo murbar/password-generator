@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
-import StringTween from 'components/common/StringTween';
+import SecretTween from 'components/common/SecretTween';
 
 const Styles = styled.div`
   background: ${p => p.theme.colors.offBlack};
@@ -41,7 +41,7 @@ export default function Secrets({ outputs }) {
             copy(s);
           }}
         >
-          <StringTween>{s}</StringTween>
+          <SecretTween>{s}</SecretTween>
         </Secret>
       ))}
     </Styles>
