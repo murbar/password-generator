@@ -11,7 +11,7 @@ const convertToString = charCodeArray => {
   return charCodeArray.map(code => String.fromCharCode(Math.floor(code))).join('');
 };
 
-// does not perform well with lengths > 100
+// does not perform well with lengths > ~100
 export default function StringTween({ children, duration = null }) {
   const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
