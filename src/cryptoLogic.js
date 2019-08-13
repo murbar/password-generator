@@ -36,18 +36,41 @@ export const generatePassword = (length, flags = {}) => {
     .join('');
 };
 
+const delimiters = {
+  hyphen: '-',
+  period: '.',
+  space: ' ',
+  number: null
+};
+
+const interleaveWithNumbers = array => {
+  return array.reduce((acc, cur, i) => {
+    if (i !== array.length - 1) {
+      return [...acc, cur, getRandomElement(chars.numbers)];
+    } else {
+      return [...acc, cur];
+    }
+  }, []);
+};
+
 export const generatePassphrase = (numWords, options = {}) => {
   const defaults = {
-    length: 5,
-    delimiter: '-'
+    delimiter: delimiters.hyphen
   };
   for (const key in defaults) {
     if (!(key in options)) options[key] = defaults[key];
   }
+  if (!(options.delimiter in delimiters)) {
+    options.delimiter = delimiters.hyphen;
+  }
 
   const phrase = new Set();
   while (phrase.size < numWords) phrase.add(getRandomElement(wordList));
-  return [...phrase].join(options.delimiter);
+  if (options.delimiter === 'number') {
+    return interleaveWithNumbers([...phrase]).join('');
+  } else {
+    return [...phrase].join(delimiters[options.delimiter]);
+  }
 };
 
 export const generatePasswords = (numPasswords = 3, options) => {
