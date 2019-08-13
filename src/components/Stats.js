@@ -2,14 +2,15 @@ import React from 'react';
 import styled, { withTheme } from 'styled-components';
 import config from 'config';
 import { animated, useSpring } from 'react-spring';
+import { media } from 'styles/helpers';
 
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  margin: 2rem 0;
-  border-radius: 0.2rem;
-  padding: 1.25rem 1.5rem;
+  margin: 0 -2rem 2rem;
+  padding: 1.25rem 2rem;
   line-height: 1;
+  font-size: 0.9em;
   span:first-child {
     font-size: 2em;
     margin-right: 1.5rem;
@@ -18,12 +19,16 @@ const Styles = styled.div`
     margin-right: 1.5rem;
     font-weight: bold;
     text-align: center;
-    /* flex: 1; */
   }
   span:nth-child(3) {
     text-align: center;
-    /* flex: 1; */
   }
+  ${media.tablet`
+  font-size: 1em;
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 0 ${p => p.theme.borderRadius} ${p => p.theme.borderRadius};
+    margin: 0 0 2rem;
+  `}
 `;
 
 const Animated = animated(Styles);
