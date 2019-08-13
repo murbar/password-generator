@@ -6,16 +6,20 @@ import Label from 'components/common/Label';
 import Input from 'components/common/Input';
 import PasswordParams from 'components/PasswordParams';
 import PassphraseParams from 'components/PassphraseParams';
-import Outputs from 'components/Outputs';
+import Secrets from 'components/Secrets';
+import Inputs from 'components/Inputs';
 import FormField from 'components/common/FormField';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import config from 'config';
 import { fireHotKey } from 'helpers';
-import { generatePassphrases, generatePasswords } from 'generators';
+import { generatePassphrases, generatePasswords } from 'cryptoLogic';
+import Stats from 'components/Stats';
+import { getEntropy } from 'cryptoLogic';
 
 const Styles = styled.div`
-  margin: 0 2rem;
+  margin: 0 auto;
+  max-width: 66rem;
 `;
 
 function App() {
@@ -26,6 +30,7 @@ function App() {
     [modes.PW]: [],
     [modes.PP]: []
   });
+  const entropy = getEntropy(params, mode);
 
   const handleInputChange = e => {
     let { name, value, type, checked } = e.target;
@@ -40,10 +45,6 @@ function App() {
       // user should select at least one option
       if (!value && lastChecked) return;
     }
-
-    // if (prefsNames.includes(name)) {
-    //   setPrefs(prev => ({ ...prev, [name]: value }));
-    // } else {
     setParams(prev => ({
       ...prev,
       [mode]: {
@@ -91,12 +92,7 @@ function App() {
   return (
     <Styles>
       <Header />
-      <p>
-        All secrets are generated on this device and are not transmitted over any network or
-        persisted in any way. Check your
-      </p>
 
-      <h2>Type</h2>
       <FormField>
         <Label>
           Password
@@ -125,8 +121,23 @@ function App() {
       {mode === modes.PW && <PasswordParams params={params} onChange={handleInputChange} />}
       {mode === modes.PP && <PassphraseParams params={params} onChange={handleInputChange} />}
 
+      <Stats entropy={entropy} />
+
       <h2>Secrets</h2>
-      <Outputs secrets={outputs[mode]} />
+      <ol>
+        <li>Pick one, any one</li>
+        <li>Click to copy</li>
+        <li>Enjoy the rest of your day</li>
+      </ol>
+      <Secrets outputs={outputs[mode]} />
+
+      <p>
+        * Your secrets are generated on this device and are not transmitted or persisted in any way.
+        Just look out for nosy parkers and close this browser tab when you're done.
+      </p>
+
+      <h2>Tips</h2>
+      <Inputs />
     </Styles>
   );
 }
