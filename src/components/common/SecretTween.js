@@ -21,7 +21,7 @@ export default function StringTween({ children, duration = null }) {
     },
     chars: to
   };
-  if (duration) config.config.duration = duration;
+  if (duration) config.config = { duration };
   const spring = useSpring(config);
 
   return (
