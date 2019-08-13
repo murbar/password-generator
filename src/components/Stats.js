@@ -1,12 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { withTheme } from 'styled-components';
 import config from 'config';
+import { animated, useSpring } from 'react-spring';
 
 const Styles = styled.div`
   display: flex;
   align-items: center;
   margin: 2rem 0;
-  background: ${p => p.theme.meterColors[p.strength]};
   border-radius: 0.2rem;
   padding: 1.25rem 1.5rem;
   line-height: 1;
@@ -26,7 +26,9 @@ const Styles = styled.div`
   }
 `;
 
-export default function Stats({ entropy }) {
+const Animated = animated(Styles);
+
+function Stats({ entropy, theme }) {
   const { strengthsEnum } = config;
   const getStrength = bits => {
     if (bits <= 45) return strengthsEnum.OK;
@@ -36,13 +38,19 @@ export default function Stats({ entropy }) {
   const strength = getStrength(entropy);
   const emoji =
     strength === strengthsEnum.OK ? '😬' : strength === strengthsEnum.GOOD ? '🙂' : '😎';
+  const backgroundSpring = useSpring({
+    config: { duration: 400 },
+    backgroundColor: theme.meterColors[strength]
+  });
 
   return (
-    <Styles strength={strength}>
+    <Animated style={backgroundSpring}>
       <span role="img" aria-label={strength}>
         {emoji}
       </span>
       <span>{strength}</span> <span>~{Math.round(entropy)} bits of entropy</span>
-    </Styles>
+    </Animated>
   );
 }
+
+export default withTheme(Stats);
