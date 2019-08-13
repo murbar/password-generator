@@ -11,11 +11,11 @@ const initParams = {
     upper: true,
     lower: true,
     numbers: true,
-    symbols: true
+    symbols: false
   },
   [modes.PP]: {
     length: 5,
-    delimiter: '-'
+    delimiter: 'hyphen'
   }
 };
 

@@ -36,7 +36,7 @@ const RegenerateButton = styled(Button)`
 function App() {
   const { localStorageKeys, modes, initParams } = config;
   const [params, setParams] = useLocalStorageState(localStorageKeys.params, initParams);
-  const [mode, setMode] = useLocalStorageState(localStorageKeys.mode, modes.PP);
+  const [mode, setMode] = useLocalStorageState(localStorageKeys.mode, modes.PW);
   const [outputs, setOutputs] = useState({
     [modes.PW]: [],
     [modes.PP]: []
