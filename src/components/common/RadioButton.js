@@ -35,6 +35,7 @@ const Styles = styled.div`
     background-color: white;
     border-radius: 50%;
     border: 0.1rem solid ${offBlack};
+    transition: all 300ms;
   }
   label:hover input ~ span {
     background-color: ${lightGrey};

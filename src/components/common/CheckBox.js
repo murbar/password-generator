@@ -6,9 +6,9 @@ const { blue, lightGrey, offBlack } = theme.colors;
 
 const Styles = styled.div`
   display: inline-block;
-  margin: 0 2rem 1rem 0;
+  margin: 0 2rem 0 0;
   &:last-child {
-    margin: 0 0 1rem 0;
+    margin: 0;
   }
   label {
     position: relative;
@@ -35,6 +35,7 @@ const Styles = styled.div`
     background-color: white;
     border-radius: ${p => p.theme.borderRadius};
     border: 0.1rem solid ${offBlack};
+    transition: all 300ms;
   }
   label:hover input ~ span {
     background-color: ${lightGrey};
