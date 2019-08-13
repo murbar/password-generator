@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import copy from 'copy-to-clipboard';
 import SecretTween from 'components/common/SecretTween';
@@ -38,8 +38,8 @@ const SecretStyles = styled.div`
   &:before {
     content: 'Copied!';
     display: flex;
-    color: ${p => p.theme.colors.offBlack};
-    background: hsla(0, 0%, 100%, 0.9);
+    color: ${p => p.theme.colors.offWhite};
+    font-weight: bold;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -51,6 +51,9 @@ const SecretStyles = styled.div`
     opacity: 0;
     transition: opacity 300ms;
   }
+  &.notify {
+    color: hsla(0, 0%, 100%, 0.08);
+  }
   &.notify:before {
     opacity: 1;
   }
@@ -58,12 +61,9 @@ const SecretStyles = styled.div`
 
 const Secret = ({ children, copyValue }) => {
   const [copied, setCopied] = useState(false);
-  const timer = React.useRef(null);
-
-  // React.useEffect(() => console.log(copied), [copied]);
+  const timer = useRef(null);
 
   const copyAndNotify = () => {
-    console.log(copyValue);
     copy(copyValue);
     setCopied(true);
     if (!timer.current) {
@@ -73,6 +73,12 @@ const Secret = ({ children, copyValue }) => {
       }, 2000);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      timer.current && window.clearTimeout(timer.current);
+    };
+  }, []);
 
   return (
     <SecretStyles onClick={copyAndNotify} className={copied && 'notify'}>
