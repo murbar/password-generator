@@ -1,4 +1,5 @@
 import wordList from 'wordList';
+import config from 'config';
 
 export const getRandomSecure = () => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
 
@@ -59,4 +60,22 @@ export const generatePassphrases = (numPhrases = 3, options) => {
   return Array(numPhrases)
     .fill(null)
     .map(() => generatePassphrase(options.length, options));
+};
+
+export const getEntropy = (params, mode) => {
+  const { modes } = config;
+  const count = params[mode].length;
+  const ppWordListCount = wordList.length;
+  const ppEntropyPerWord = Math.log2(ppWordListCount);
+  const ppTotalEntropy = ppEntropyPerWord * count;
+
+  let charSpace = 0;
+  if (params[modes.PW].lower) charSpace += 26;
+  if (params[modes.PW].upper) charSpace += 26;
+  if (params[modes.PW].numbers) charSpace += 10;
+  if (params[modes.PW].symbols) charSpace += 16;
+  const pwEntropyPerChar = Math.log2(charSpace);
+  const pwTotalEntropy = pwEntropyPerChar * count;
+
+  return mode === modes.PW ? pwTotalEntropy : ppTotalEntropy;
 };
