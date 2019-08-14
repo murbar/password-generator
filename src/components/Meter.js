@@ -48,7 +48,7 @@ function Meter({ entropy, theme }) {
   const backgroundSpring = useSpring({
     config: { duration: 400 },
     backgroundColor: theme.meterColors[strength],
-    filter: `drop-shadow(0 0 1rem ${theme.meterColors[strength]})`
+    boxShadow: `0 0 1rem ${theme.meterColors[strength]}`
   });
 
   return (
