@@ -31,7 +31,6 @@ export default createGlobalStyle`
     font-family: ${p => p.theme.fontFamilyHeadings};
     margin: 0;
     font-weight: 400;
-    text-transform: uppercase;
     color: ${p => p.theme.colors.darkGrey};
   }
   p{ 

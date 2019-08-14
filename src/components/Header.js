@@ -5,6 +5,7 @@ import { media } from 'styles/helpers';
 
 const Styles = styled.header`
   padding: 4rem 0 2rem;
+  text-transform: uppercase;
   h1 {
     line-height: 1;
   }
