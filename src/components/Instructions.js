@@ -10,6 +10,7 @@ const Styles = styled.div`
 export default function Tips() {
   return (
     <Styles>
+      <h2>How does it work?</h2>
       <ol>
         <li>Choose one</li>
         <li>Click to copy</li>
