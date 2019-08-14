@@ -3,11 +3,14 @@ import styled, { withTheme } from 'styled-components';
 import config from 'config';
 import { animated, useSpring } from 'react-spring';
 import { media } from 'styles/helpers';
+import { ReactComponent as CoolFace } from 'images/cool.svg';
+import { ReactComponent as HappyFace } from 'images/smile.svg';
+import { ReactComponent as NervousFace } from 'images/nervous.svg';
 
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
   margin: 0 -2rem;
   padding: 1rem 1rem;
   line-height: 1;
@@ -20,9 +23,12 @@ const Styles = styled.div`
     hsla(0, 0%, 0%, 0.05) 2rem
   );
   span:first-child {
-    font-size: 3em;
+    svg {
+      height: 3em;
+    }
   }
   span:nth-child(2) {
+    margin: 0 1.5rem;
     font-weight: bold;
   }
   span:nth-child(3) {
@@ -44,7 +50,13 @@ function Meter({ entropy, theme }) {
   };
   const strength = getStrength(entropy);
   const emoji =
-    strength === strengthsEnum.OK ? '😬' : strength === strengthsEnum.GOOD ? '🙂' : '😎';
+    strength === strengthsEnum.OK ? (
+      <NervousFace />
+    ) : strength === strengthsEnum.GOOD ? (
+      <HappyFace />
+    ) : (
+      <CoolFace />
+    );
   const backgroundSpring = useSpring({
     config: { duration: 400 },
     backgroundColor: theme.meterColors[strength],
@@ -53,9 +65,7 @@ function Meter({ entropy, theme }) {
 
   return (
     <Animated style={backgroundSpring}>
-      <span role="img" aria-label={strength}>
-        {emoji}
-      </span>
+      <span aria-label={strength}>{emoji}</span>
       <span>{strength}</span>
       <span>~{Math.round(entropy)} bits of entropy</span>
     </Animated>
