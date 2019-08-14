@@ -35,7 +35,7 @@ export default function PasswordParams({ values, onChange }) {
   return (
     <Styles>
       <p>
-        Good passwords are at least 12 characters long and contain letters, numbers, and symbols,
+        Good passwords are at least 12 characters long. Use letters, numbers, & symbols &mdash;
         preferably in random order. Make it as long as your account provider will allow, you won’t
         be typing it anyway once you get a <a href="#about">password manager</a>.
       </p>
