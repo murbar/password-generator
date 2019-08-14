@@ -7,12 +7,12 @@ import { media } from 'styles/helpers';
 const Styles = styled.div`
   background: ${p => p.theme.colors.offBlack};
   color: ${p => p.theme.colors.offWhite};
-  margin: 1.5rem -2rem;
+  margin: 0 -2rem 1.5rem;
   padding: 2rem;
   ${media.tablet`
-  padding: 1.5rem;
-    border-radius: ${p => p.theme.borderRadius};
-    margin: 1.5rem 0;
+    padding: 1.5rem;
+    border-radius: 0 0 ${p => p.theme.borderRadius} ${p => p.theme.borderRadius};
+    margin: 0;
   `}
 `;
 
@@ -81,7 +81,7 @@ const Secret = ({ children, copyValue }) => {
   }, []);
 
   return (
-    <SecretStyles onClick={copyAndNotify} className={copied && 'notify'}>
+    <SecretStyles onClick={copyAndNotify} className={copied && 'notify'} title="Click to copy">
       {children}
     </SecretStyles>
   );
