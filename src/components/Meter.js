@@ -12,7 +12,7 @@ const Styles = styled.div`
   align-items: center;
   justify-content: center;
   margin: 0 -2rem;
-  padding: 1rem 1rem;
+  padding: 1rem 0.5rem;
   line-height: 1;
   font-size: 0.8em;
   background: repeating-linear-gradient(
