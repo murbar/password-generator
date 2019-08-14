@@ -8,6 +8,7 @@ const Styles = styled.header`
   text-transform: uppercase;
   h1 {
     line-height: 1;
+    margin: 0;
   }
   span {
     transform: rotate(-3deg);
