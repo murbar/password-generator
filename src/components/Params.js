@@ -11,7 +11,6 @@ const Styles = styled.div`
   background: white;
   padding: 2rem;
   margin: 0 -2rem;
-  position: relative;
   p {
     font-size: 0.8em;
   }
