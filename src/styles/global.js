@@ -29,7 +29,7 @@ export default createGlobalStyle`
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: ${p => p.theme.fontFamilyHeadings};
-    margin: 0;
+    margin: 0 0 0.5em;
     font-weight: 400;
     color: ${p => p.theme.colors.darkGrey};
   }
