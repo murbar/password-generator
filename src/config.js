@@ -35,5 +35,6 @@ export default {
   modes,
   initParams,
   localStorageKeys,
-  strengthsEnum
+  strengthsEnum,
+  GAPropertyId: 'UA-140727716-6'
 };

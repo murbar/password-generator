@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import ReactGA from 'react-ga';
 import styled from 'styled-components';
 import GlobalStyles from 'styles/global';
 import copy from 'copy-to-clipboard';
@@ -25,6 +26,8 @@ const Styles = styled.div`
     max-width: 66rem;
   `}
 `;
+
+ReactGA.initialize(config.GAPropertyId);
 
 function App() {
   const { localStorageKeys, modes, initParams } = config;
@@ -83,6 +86,8 @@ function App() {
       });
     }
   });
+
+  ReactGA.pageview('/');
 
   return (
     <Styles>
