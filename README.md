@@ -1,7 +1,12 @@
-# CRA Boilerplate v3.1.0
+# A secure password/passphrase generator
 
-August 2019 - is it [up to date](https://github.com/facebook/create-react-app/releases)?
+1. Set your parameters
+2. Choose a secret, any will do
+3. Click to copy
+4. Enjoy your day
 
-- No cruft
-- Styled components - global styles, theme, helpers
-- "Nunito" font face
+Please share your feedback - let me know if this tool is useful for you, or if you find any bugs. I'd like to add additional functionality in the future. What features would you like to see?
+
+Built with React, August 2019.
+
+https://pwgen.joelb.dev/
