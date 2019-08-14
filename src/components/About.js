@@ -36,7 +36,7 @@ export default function About() {
         <a href="https://www.tracesecurity.com/blog/articles/81-of-company-data-breaches-due-to-poor-passwords">
           statistic
         </a>
-        ! Secure passwords are your first defense when safeguarging against threats online.
+        ! Secure passwords are your first defense when safeguarding against threats online.
       </p>
       <ul>
         <li>Don’t use personal info in your passwords, like your dog’s birthday. Duh.</li>
