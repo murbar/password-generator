@@ -4,15 +4,15 @@ import config from 'config';
 const { strengthsEnum } = config;
 
 const colors = {
-  offWhite: '#efefef',
-  offBlack: '#222',
+  offWhite: 'hsl(0, 0%, 94%)',
+  offBlack: 'hsl(0, 0%, 13%)',
   tomato: 'hsl(9, 100%, 70%)',
   blue: 'hsl(195, 100%, 50%)',
   green: 'hsl(150, 100%, 50%)',
   fuchsia: 'hsl(300, 100%, 65%)',
   paleYellow: 'hsl(60, 100%, 75%)',
-  lightGrey: '#cccccc',
-  darkGrey: '#333333'
+  lightGrey: 'hsl(0, 0%, 85%)',
+  darkGrey: 'hsl(0, 0%, 20%)'
 };
 
 const meterColors = {
@@ -29,6 +29,7 @@ const theme = {
   },
   meterColors,
   inputBorderRadius: `0.5rem`,
+  inputHighlightColor: colors.offBlack,
   fontFamily: "'Roboto Mono', sans-serif",
   fontFamilyHeadings: "'Contrail One', sans-serif",
   borderRadius: '0.2rem',
