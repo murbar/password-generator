@@ -59,7 +59,7 @@ const SecretStyles = styled.div`
   }
 `;
 
-const Secret = ({ children, copyValue }) => {
+const Secret = ({ children, copyValue, length }) => {
   const [copied, setCopied] = useState(false);
   const timer = useRef(null);
 
@@ -81,7 +81,12 @@ const Secret = ({ children, copyValue }) => {
   }, []);
 
   return (
-    <SecretStyles onClick={copyAndNotify} className={copied && 'notify'} title="Click to copy">
+    <SecretStyles
+      onClick={copyAndNotify}
+      className={copied && 'notify'}
+      title="Click to copy"
+      length={length}
+    >
       {children}
     </SecretStyles>
   );
@@ -91,7 +96,7 @@ export default function Secrets({ outputs }) {
   return (
     <Styles>
       {outputs.map(s => (
-        <Secret key={s} copyValue={s}>
+        <Secret key={s} copyValue={s} length={s.length}>
           <SecretTween>{s}</SecretTween>
         </Secret>
       ))}
