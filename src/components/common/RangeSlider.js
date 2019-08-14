@@ -24,6 +24,7 @@ const Styles = styled.div`
     flex: 1;
     appearance: none;
     height: 0.5em;
+    padding: 0.5rem;
     background: white;
     outline: none;
     transition: all 300ms;
@@ -39,6 +40,7 @@ const Styles = styled.div`
     appearance: none;
     width: 1.5em;
     height: 1.5em;
+    padding: 1rem;
     border-radius: ${p => p.theme.borderRadius};
     border-radius: 50%;
     background: ${inputHighlightColor};
@@ -66,6 +68,21 @@ export default function RangeSlider({
   className,
   ...props
 }) {
+  // update when user touches input outside of slider handle
+  const handleTouchEnd = e => {
+    e.persist();
+    const { clientX } = e.targetTouches[0];
+    const touchX = clientX;
+    const rect = e.target.getBoundingClientRect();
+    const sliderWidth = rect.width;
+    const x = touchX - rect.x;
+    const selection = x / sliderWidth;
+    const range = max - min;
+    const value = Math.floor(range * selection + min);
+    e.target.value = value;
+    onChange(e);
+  };
+
   return (
     <Styles className={className}>
       <label>{label}</label>
@@ -77,6 +94,7 @@ export default function RangeSlider({
         min={min}
         max={max}
         onChange={onChange}
+        onTouchStart={handleTouchEnd}
         {...props}
       />
     </Styles>
