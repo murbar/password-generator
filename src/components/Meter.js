@@ -7,33 +7,36 @@ import { media } from 'styles/helpers';
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  margin: 0 -2rem 2rem;
-  padding: 1.25rem 2rem;
+  justify-content: space-evenly;
+  margin: 0 -2rem;
+  padding: 1rem 1rem;
   line-height: 1;
-  font-size: 0.9em;
+  font-size: 0.8em;
+
+  background: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 1rem,
+    hsla(0, 0%, 0%, 0.05) 1rem,
+    hsla(0, 0%, 0%, 0.05) 2rem
+  );
   span:first-child {
-    font-size: 2em;
-    margin-right: 1.5rem;
+    font-size: 3em;
   }
   span:nth-child(2) {
-    margin-right: 1.5rem;
     font-weight: bold;
-    text-align: center;
   }
   span:nth-child(3) {
-    text-align: center;
   }
   ${media.tablet`
-  font-size: 1em;
-    padding: 1.25rem 1.5rem;
-    border-radius: 0 0 ${p => p.theme.borderRadius} ${p => p.theme.borderRadius};
-    margin: 0 0 2rem;
+    font-size: 1em;
+    margin: 0;
   `}
 `;
 
 const Animated = animated(Styles);
 
-function Stats({ entropy, theme }) {
+function Meter({ entropy, theme }) {
   const { strengthsEnum } = config;
   const getStrength = bits => {
     if (bits <= 45) return strengthsEnum.OK;
@@ -53,9 +56,10 @@ function Stats({ entropy, theme }) {
       <span role="img" aria-label={strength}>
         {emoji}
       </span>
-      <span>{strength}</span> <span>~{Math.round(entropy)} bits of entropy</span>
+      <span>{strength}</span>
+      <span>~{Math.round(entropy)} bits of entropy</span>
     </Animated>
   );
 }
 
-export default withTheme(Stats);
+export default withTheme(Meter);
