@@ -12,7 +12,6 @@ const Styles = styled.div`
   padding: 1rem 1rem;
   line-height: 1;
   font-size: 0.8em;
-
   background: repeating-linear-gradient(
     -45deg,
     transparent,
@@ -48,7 +47,8 @@ function Meter({ entropy, theme }) {
     strength === strengthsEnum.OK ? '😬' : strength === strengthsEnum.GOOD ? '🙂' : '😎';
   const backgroundSpring = useSpring({
     config: { duration: 400 },
-    backgroundColor: theme.meterColors[strength]
+    backgroundColor: theme.meterColors[strength],
+    filter: `drop-shadow(0 0 1rem ${theme.meterColors[strength]})`
   });
 
   return (
