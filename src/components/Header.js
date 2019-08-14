@@ -46,13 +46,13 @@ export default function Header() {
     <Styles>
       <h1>
         <span>
-          <SecretTween duration={500}>Generate</SecretTween>
+          <SecretTween scrambleOnClick>Generate</SecretTween>
         </span>
         <span>
-          <SecretTween>secure passwords</SecretTween>
+          <SecretTween scrambleOnClick>secure passwords</SecretTween>
         </span>
         <span>
-          <SecretTween>instantly</SecretTween>
+          <SecretTween scrambleOnClick>instantly</SecretTween>
         </span>
       </h1>
     </Styles>
