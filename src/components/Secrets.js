@@ -19,15 +19,24 @@ const Styles = styled.div`
 const SecretStyles = styled.div`
   font-family: ${p => p.theme.fontFamilyFixed};
   margin-bottom: 0.75em;
-  font-size: ${p => (p.length < 14 ? '1.75em' : p.length > 40 ? '1.1em' : '1.3em')};
-  line-height: 1;
-  text-align: center;
-  padding: 0.5em;
+  font-size: ${p => (p.length < 14 ? '1.75em' : p.length > 38 ? '1.1em' : '1.3em')};
+  height: ${p => (p.length < 14 ? '6rem' : p.length > 22 ? '10rem' : '8rem')};
+  ${media.tablet`
+    font-size: ${p => (p.length < 14 ? '1.75em' : p.length > 35 ? '1.1em' : '1.3em')};
+    height: ${p => (p.length < 14 ? '6rem' : '8rem')};
+  `}
+  line-height: 1.2;
+  padding: 0 1rem;
   background: hsla(0, 0%, 100%, 0.15);
   border-radius: ${p => p.theme.borderRadius};
-  overflow-wrap: break-word;
   position: relative;
   transition: all 300ms;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow-wrap: break-word;
+  word-break: break-word;
   &:last-child {
     margin-bottom: 0;
   }
