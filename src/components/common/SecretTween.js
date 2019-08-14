@@ -25,7 +25,7 @@ const convertToString = charCodeArray => {
   //   .map(c => String.fromCharCode(c))
   //   .join('');
 
-  // reducing profiles 5-20x faster than the 4 chained calls above
+  // reduce profiles 5-20x faster than the code above
   return charCodeArray.reduce((result, code) => {
     return result + String.fromCharCode(normalizeCharCode(Math.floor(code)));
   }, '');
@@ -47,9 +47,11 @@ export default function StringTween({ children, duration = null, scrambleOnClick
   const scramble = () => {
     if (scrambleOnClick) {
       setSpring({
+        config: { duration: 100 },
         to: { chars: convertToCharCodeArray(generatePassword(children.length)) },
         onRest: () => {
           setSpring({
+            config: { duration: undefined },
             to: { chars: convertToCharCodeArray(children) }
           });
         }
