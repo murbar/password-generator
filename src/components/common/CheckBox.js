@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { blue, lightGrey, offBlack } = theme.colors;
+const { inputHighlightColor } = theme;
+const { lightGrey, offBlack } = theme.colors;
 
 const Styles = styled.div`
   display: inline-block;
@@ -41,7 +42,7 @@ const Styles = styled.div`
     background-color: ${lightGrey};
   }
   label input:checked ~ span {
-    background-color: ${blue};
+    background-color: ${inputHighlightColor};
     border: 0.1rem solid transparent;
   }
   /* indicator */

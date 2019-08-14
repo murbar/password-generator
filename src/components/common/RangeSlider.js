@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import theme from 'styles/theme';
 
-const { blue, offBlack } = theme.colors;
+const { inputHighlightColor } = theme;
+const { offBlack, lightGrey } = theme.colors;
 
 const Styles = styled.div`
   margin: 0;
@@ -31,7 +32,7 @@ const Styles = styled.div`
     font-size: 1em;
   }
   input:hover {
-    opacity: 1;
+    background: ${lightGrey};
   }
   /* Chrome, Opera, Safari, Edge */
   input::-webkit-slider-thumb {
@@ -39,7 +40,7 @@ const Styles = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: ${p => p.theme.borderRadius};
-    background: ${blue};
+    background: ${inputHighlightColor};
     cursor: pointer;
     border: none;
   }
@@ -48,7 +49,7 @@ const Styles = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: ${p => p.theme.borderRadius};
-    background: ${blue};
+    background: ${inputHighlightColor};
     cursor: pointer;
     border: none;
   }
