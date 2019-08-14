@@ -19,7 +19,7 @@ const Styles = styled.div`
   li:before {
     content: '*';
     position: absolute;
-    left: -2.5rem;
+    left: -2.25rem;
     top: 0;
     font-weight: bold;
     font-size: 1.25em;
@@ -30,7 +30,7 @@ const Styles = styled.div`
 export default function About() {
   return (
     <Styles>
-      <h2 id="about">Tips for good password hygiene</h2>
+      <h2 id="about">Good password hygiene</h2>
       <p>
         Don’t be a{' '}
         <a href="https://www.tracesecurity.com/blog/articles/81-of-company-data-breaches-due-to-poor-passwords">

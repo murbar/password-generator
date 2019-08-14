@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Styles = styled.p`
   background: ${p => p.theme.colors.lightGrey};
   background: white;
-  padding: 1.5rem;
+  padding: 2rem;
   font-size: 0.8em;
   border-radius: ${p => p.theme.borderRadius};
 `;
