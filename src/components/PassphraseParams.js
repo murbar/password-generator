@@ -36,8 +36,9 @@ export default function PassphraseParams({ values, onChange }) {
   return (
     <Styles>
       <p>
-        Long passphrases are much easier to remember (and type!) and can be just as secure as a
-        random string of characters for most uses.
+        Long passphrases are easier to remember (and type!) and are often just as secure as a random
+        string of characters, especially when they're longer than a password would be. Makes a great
+        choice for your "master" password.
       </p>
       <InputRow>
         <Slider
