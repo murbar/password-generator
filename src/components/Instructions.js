@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { media } from 'styles/helpers';
+// import { media } from 'styles/helpers';
 
 const Styles = styled.div`
   font-size: 0.9em;
@@ -10,9 +10,10 @@ const Styles = styled.div`
 export default function Tips() {
   return (
     <Styles>
-      <h2>How does it work?</h2>
+      <h2>How does this work?</h2>
       <ol>
-        <li>Choose one</li>
+        <li>Set your parameters</li>
+        <li>Choose a secret, any will do</li>
         <li>Click to copy</li>
         <li>Enjoy your day</li>
       </ol>
