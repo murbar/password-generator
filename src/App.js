@@ -8,15 +8,13 @@ import Secrets from 'components/Secrets';
 import Disclaimer from 'components/Disclaimer';
 import Tips from 'components/Tips';
 import Instructions from 'components/Instructions';
-import Button from 'components/common/Button';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import config from 'config';
 import { fireHotKey } from 'helpers';
 import { generatePassphrases, generatePasswords } from 'cryptoLogic';
-import Stats from 'components/Stats';
+import Meter from 'components/Meter';
 import { getEntropy } from 'cryptoLogic';
-import { ReactComponent as RefreshIcon } from 'images/repeat.svg';
 import { media } from 'styles/helpers';
 import ChoiceToggle from 'components/common/ChoiceToggle';
 
@@ -25,13 +23,6 @@ const Styles = styled.div`
   ${media.tablet`
     max-width: 66rem;
   `}
-`;
-
-const RegenerateButton = styled(Button)`
-  svg {
-    transform: rotate(35deg);
-    margin-right: 0.75em;
-  }
 `;
 
 function App() {
@@ -80,19 +71,12 @@ function App() {
   }, [generate]);
 
   useHotKeys({
-    l: e => {
-      fireHotKey(e, () => {
-        console.log('params', params);
-        console.log('mode', mode);
-        console.log('outputs', outputs);
-      });
-    },
     c: e => {
       fireHotKey(e, () => {
         copy(outputs[mode][0]);
       });
     },
-    g: e => {
+    r: e => {
       fireHotKey(e, () => {
         generate();
       });
@@ -108,13 +92,10 @@ function App() {
         initial={mode === modes.PW ? 'Password' : 'Passphrase'}
         onToggle={m => setMode(m)}
       />
-      <Params mode={mode} values={params} onChange={handleInputChange} />
-      <Stats entropy={entropy} />
-      <Instructions />
-      <RegenerateButton onClick={() => generate()} title="Generate new secrets">
-        <RefreshIcon /> Re-gen
-      </RegenerateButton>
+      <Params mode={mode} values={params} onChange={handleInputChange} reGen={() => generate()} />
+      <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
+      <Instructions />
       <Disclaimer />
       <Tips />
     </Styles>
