@@ -35,6 +35,7 @@ const Styles = styled.div`
     width: 1.5em;
     background-color: white;
     border-radius: ${p => p.theme.borderRadius};
+    border-radius: 50%;
     border: 0.1rem solid ${offBlack};
     transition: all 300ms;
   }
@@ -55,10 +56,10 @@ const Styles = styled.div`
     display: block;
   }
   label span:after {
-    left: 35%;
-    top: 5%;
+    left: 30%;
+    top: 10%;
     width: 25%;
-    height: 60%;
+    height: 55%;
     border: solid white;
     border-width: 0 0.2em 0.2em 0;
     transform: rotate(45deg);

@@ -40,6 +40,7 @@ const Styles = styled.div`
     width: 1.5em;
     height: 1.5em;
     border-radius: ${p => p.theme.borderRadius};
+    border-radius: 50%;
     background: ${inputHighlightColor};
     cursor: pointer;
     border: none;
