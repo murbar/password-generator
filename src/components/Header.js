@@ -14,6 +14,7 @@ const Styles = styled.header`
     transform: rotate(-3deg);
     transform-origin: bottom left;
     display: block;
+    white-space: nowrap;
     &:first-child {
       font-size: 1.2em;
     }
