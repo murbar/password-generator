@@ -6,6 +6,7 @@ import copy from 'copy-to-clipboard';
 import Header from 'components/Header';
 import Params from 'components/Params';
 import Secrets from 'components/Secrets';
+import ReGenButton from 'components/ReGenButton';
 import Disclaimer from 'components/Disclaimer';
 import About from 'components/About';
 import Instructions from 'components/Instructions';
@@ -101,6 +102,7 @@ function App() {
       <Params mode={mode} values={params} onChange={handleInputChange} reGen={() => generate()} />
       <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
+      <ReGenButton onClick={() => generate()} />
       <Instructions />
       <Disclaimer />
       <About />
