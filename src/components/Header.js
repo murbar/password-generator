@@ -4,11 +4,13 @@ import SecretTween from 'components/common/SecretTween';
 import { media } from 'styles/helpers';
 
 const Styles = styled.header`
-  padding: 2rem 0;
+  padding: 4rem 0 2rem;
   h1 {
     line-height: 1;
   }
   span {
+    transform: rotate(-3deg);
+    transform-origin: bottom left;
     display: block;
     &:first-child {
       font-size: 1.2em;
@@ -21,7 +23,7 @@ const Styles = styled.header`
     }
   }
   ${media.tablet`
-    padding: 3rem 0;
+    padding: 5rem 0 3rem;
     span {
       display: block;
       &:first-child {
@@ -35,7 +37,7 @@ const Styles = styled.header`
     }
   `}
   ${media.desktop`
-    padding: 6rem 0 3rem;
+    padding: 7rem 0 4rem;
   `}
 `;
 
