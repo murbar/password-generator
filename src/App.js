@@ -17,6 +17,7 @@ import Meter from 'components/Meter';
 import { getEntropy } from 'cryptoLogic';
 import { media } from 'styles/helpers';
 import ChoiceToggle from 'components/common/ChoiceToggle';
+import Footer from 'components/Footer';
 
 const Styles = styled.div`
   margin: 0 auto;
@@ -98,6 +99,7 @@ function App() {
       <Instructions />
       <Disclaimer />
       <Tips />
+      <Footer />
     </Styles>
   );
 }
