@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Styles = styled.div`
-  margin: 2rem 0;
+  margin: 3rem 0;
   ul {
     font-size: 0.9em;
     padding: 0 0 0 2.5rem;
@@ -12,6 +12,9 @@ const Styles = styled.div`
     list-style: none;
     position: relative;
     line-height: 1.5;
+  }
+  li:last-child {
+    margin: 1rem 0 0;
   }
   li:before {
     content: '*';

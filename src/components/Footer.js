@@ -4,7 +4,7 @@ import config from 'config';
 import { ReactComponent as Heart } from 'images/heart.svg';
 
 const StyledContainer = styled.div`
-  padding: 4rem 0 3rem;
+  padding: 3rem 0;
   text-align: center;
   font-size: 0.7em;
   .v {

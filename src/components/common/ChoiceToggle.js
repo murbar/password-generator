@@ -10,7 +10,7 @@ const Styles = styled.div`
     padding: 0 0.5em;
   `}
   button {
-    font-size: 0.8em;
+    font-size: 1em;
     font-family: ${p => p.theme.fontFamily};
     font-weight: bold;
     border: none;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // import { media } from 'styles/helpers';
 
 const Styles = styled.div`
-  margin: 2rem 0;
+  margin: 3rem 0;
   ol {
     font-size: 0.9em;
   }

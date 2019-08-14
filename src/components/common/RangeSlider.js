@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 
 const { inputHighlightColor } = theme;
-const { offBlack, lightGrey } = theme.colors;
+const { offBlack, blue } = theme.colors;
 
 const Styles = styled.div`
   margin: 0;
@@ -33,7 +33,7 @@ const Styles = styled.div`
     font-size: 1em;
   }
   input:hover {
-    background: ${lightGrey};
+    border: 0.1rem solid ${blue};
   }
   /* Chrome, Opera, Safari, Edge */
   input::-webkit-slider-thumb {

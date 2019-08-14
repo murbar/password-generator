@@ -4,7 +4,12 @@ import Button from 'components/common/Button';
 import { ReactComponent as RefreshIcon } from 'images/repeat.svg';
 
 const Styles = styled.div`
-  margin-top: 2rem;
+  margin: 2rem 0;
+  button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
   svg {
     transform: rotate(35deg);
     margin-right: 0.75em;

@@ -12,7 +12,7 @@ const Styles = styled.p`
 export default function Disclaimer() {
   return (
     <Styles>
-      * Your secrets are generated on this device and are not transmitted or persisted in any way.
+      Your secrets are generated on this device and are not transmitted or persisted in any way.
       Just look out for nosy parkers and close this browser tab when you're done.
     </Styles>
   );

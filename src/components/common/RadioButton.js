@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import theme from 'styles/theme';
 
 const { inputHighlightColor } = theme;
-const { lightGrey, offBlack } = theme.colors;
+const { blue, offBlack } = theme.colors;
 
 const Styles = styled.div`
   display: inline-block;
@@ -39,7 +39,7 @@ const Styles = styled.div`
     transition: all 300ms;
   }
   label:hover input ~ span {
-    background-color: ${lightGrey};
+    border: 0.1rem solid ${blue};
   }
   label input:checked ~ span {
     background-color: ${inputHighlightColor};
