@@ -7,7 +7,7 @@ import Header from 'components/Header';
 import Params from 'components/Params';
 import Secrets from 'components/Secrets';
 import Disclaimer from 'components/Disclaimer';
-import Tips from 'components/Tips';
+import About from 'components/About';
 import Instructions from 'components/Instructions';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
@@ -103,7 +103,7 @@ function App() {
       <Secrets outputs={outputs[mode]} />
       <Instructions />
       <Disclaimer />
-      <Tips />
+      <About />
       <Footer />
     </Styles>
   );
