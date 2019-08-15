@@ -3,8 +3,11 @@ import styled from 'styled-components';
 
 const Styles = styled.div`
   margin: 3rem 0;
+  p,
   ul {
     font-size: 0.9em;
+  }
+  ul {
     padding: 0 0 0 2.5rem;
   }
   li {
