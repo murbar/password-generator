@@ -32,10 +32,17 @@ const convertToString = charCodeArray => {
 };
 
 // does not perform well with lengths > ~100
-export default function StringTween({ children, duration = null, scrambleOnClick = false }) {
+export default function StringTween({
+  children,
+  duration = null,
+  scrambleOnClick = false
+}) {
   const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
   const config = {
+    // low precision since we're tweening integers
+    // cuts number of operations in half, roughly
+    config: { precision: 1 },
     from: {
       chars: from
     },
@@ -47,11 +54,11 @@ export default function StringTween({ children, duration = null, scrambleOnClick
   const scramble = () => {
     if (scrambleOnClick) {
       setSpring({
-        config: { duration: 100 },
+        config: { duration: 100, precision: 1 },
         to: { chars: convertToCharCodeArray(generatePassword(children.length)) },
         onRest: () => {
           setSpring({
-            config: { duration: undefined },
+            config: { duration: undefined, precision: 1 },
             to: { chars: convertToCharCodeArray(children) }
           });
         }
