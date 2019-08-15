@@ -1,7 +1,8 @@
 import wordList from 'wordList';
 import config from 'config';
 
-export const getRandomSecure = () => crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+export const getRandomSecure = () =>
+  crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
 
 export const getRandomElement = array => {
   return array[Math.floor(getRandomSecure() * array.length)];
@@ -54,6 +55,7 @@ const interleaveWithNumbers = array => {
 };
 
 export const generatePassphrase = (numWords, options = {}) => {
+  console.log(options);
   const defaults = {
     delimiter: delimiters.hyphen
   };
@@ -90,7 +92,10 @@ export const getEntropy = (params, mode) => {
   const count = params[mode].length;
   const ppWordListCount = wordList.length;
   const ppEntropyPerWord = Math.log2(ppWordListCount);
-  const ppTotalEntropy = ppEntropyPerWord * count;
+  const ppTotalEntropy =
+    params[modes.PP].delimiter === 'number'
+      ? ppEntropyPerWord * count + (count - 1) * 10
+      : ppEntropyPerWord * count;
 
   let charSpace = 0;
   if (params[modes.PW].lower) charSpace += 26;

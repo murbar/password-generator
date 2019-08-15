@@ -14,9 +14,8 @@ import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import config from 'config';
 import { fireHotKey } from 'helpers';
-import { generatePassphrases, generatePasswords } from 'cryptoLogic';
+import { generatePassphrases, generatePasswords, getEntropy } from 'cryptoLogic';
 import Meter from 'components/Meter';
-import { getEntropy } from 'cryptoLogic';
 import { media } from 'styles/helpers';
 import ChoiceToggle from 'components/common/ChoiceToggle';
 import Footer from 'components/Footer';
@@ -47,8 +46,8 @@ function App() {
     if (type === 'checkbox') value = checked;
     if (type === 'checkbox' && mode === modes.PW) {
       const lastChecked =
-        ['upper', 'lower', 'numbers', 'symbols'].map(n => params[mode][n]).filter(v => v).length ===
-        1;
+        ['upper', 'lower', 'numbers', 'symbols'].map(n => params[mode][n]).filter(v => v)
+          .length === 1;
       // user should select at least one option
       if (!value && lastChecked) return;
     }
@@ -99,7 +98,12 @@ function App() {
         initial={mode === modes.PW ? 'Password' : 'Passphrase'}
         onToggle={m => setMode(m)}
       />
-      <Params mode={mode} values={params} onChange={handleInputChange} reGen={() => generate()} />
+      <Params
+        mode={mode}
+        values={params}
+        onChange={handleInputChange}
+        reGen={() => generate()}
+      />
       <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
       <ReGenButton onClick={() => generate()} />
