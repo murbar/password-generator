@@ -24,13 +24,9 @@ const AnimatedTab = ({ children, ...props }) => {
   return <animated.div {...props}>{children}</animated.div>;
 };
 
-export default function Params({ mode, values, onChange, reGen }) {
+export default function Params({ mode, values, onChange }) {
   const { modes } = config;
-  const tabs = {
-    [modes.PP]: () => <PassphraseParams values={values} onChange={onChange} />,
-    [modes.PW]: () => <PasswordParams values={values} onChange={onChange} />
-  };
-  const tabTransitions = useTransition(mode, null, {
+  const tabTransitions = useTransition(mode, mode, {
     config: { duration: 200 },
     initial: { opacity: 1 },
     from: { opacity: 0, transform: 'scale(1.05)' },
@@ -40,11 +36,14 @@ export default function Params({ mode, values, onChange, reGen }) {
 
   return (
     <Styles>
-      {tabTransitions.map(({ props, key }) => {
-        const Tab = tabs[mode];
+      {tabTransitions.map(({ item, props, key }) => {
         return (
           <AnimatedTab key={key} style={props}>
-            <Tab />
+            {item === modes.PW ? (
+              <PasswordParams values={values} onChange={onChange} />
+            ) : (
+              <PassphraseParams values={values} onChange={onChange} />
+            )}
           </AnimatedTab>
         );
       })}

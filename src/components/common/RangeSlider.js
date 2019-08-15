@@ -40,7 +40,6 @@ const Styles = styled.div`
     appearance: none;
     width: 1.5em;
     height: 1.5em;
-    padding: 1rem;
     border-radius: ${p => p.theme.borderRadius};
     border-radius: 50%;
     background: ${inputHighlightColor};
@@ -51,7 +50,7 @@ const Styles = styled.div`
   input::-moz-range-thumb {
     width: 1.5em;
     height: 1.5em;
-    border-radius: ${p => p.theme.borderRadius};
+    border-radius: 50%;
     background: ${inputHighlightColor};
     cursor: pointer;
     border: none;
@@ -69,8 +68,7 @@ export default function RangeSlider({
   ...props
 }) {
   // update when user touches input outside of slider handle
-  const handleTouchEnd = e => {
-    e.persist();
+  const handleTouchStart = e => {
     const { clientX } = e.targetTouches[0];
     const touchX = clientX;
     const rect = e.target.getBoundingClientRect();
@@ -78,9 +76,11 @@ export default function RangeSlider({
     const x = touchX - rect.x;
     const selection = x / sliderWidth;
     const range = max - min;
-    const value = Math.floor(range * selection + min);
-    e.target.value = value;
-    onChange(e);
+    const newValue = Math.floor(range * selection + min);
+    if (newValue !== value) {
+      e.target.value = newValue;
+      onChange(e);
+    }
   };
 
   return (
@@ -94,7 +94,7 @@ export default function RangeSlider({
         min={min}
         max={max}
         onChange={onChange}
-        onTouchStart={handleTouchEnd}
+        onTouchStart={handleTouchStart}
         {...props}
       />
     </Styles>
