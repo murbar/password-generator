@@ -21,7 +21,7 @@ const Styles = styled.div`
     border-radius: ${p => p.theme.borderRadius} ${p => p.theme.borderRadius} 0 0;
   }
   button:hover {
-    background: ${p => p.theme.colors.blue};
+    background: hsla(0, 0%, 94%, 0.5);
   }
   button:focus {
     outline: none;
