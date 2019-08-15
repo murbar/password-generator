@@ -89,20 +89,18 @@ export const generatePassphrases = (numPhrases = 3, options) => {
 export const getEntropy = (params, mode) => {
   const { modes } = config;
   const count = params[mode].length;
-  const ppWordListCount = wordList.length;
-  const ppEntropyPerWord = Math.log2(ppWordListCount);
-  const ppTotalEntropy =
-    params[modes.PP].delimiter === 'number'
+  if (mode === modes.PP) {
+    const ppWordListCount = wordList.length;
+    const ppEntropyPerWord = Math.log2(ppWordListCount);
+    return params[mode].delimiter === 'number'
       ? ppEntropyPerWord * count + (count - 1) * 10
       : ppEntropyPerWord * count;
-
-  let charSpace = 0;
-  if (params[modes.PW].lower) charSpace += 26;
-  if (params[modes.PW].upper) charSpace += 26;
-  if (params[modes.PW].numbers) charSpace += 10;
-  if (params[modes.PW].symbols) charSpace += 16;
-  const pwEntropyPerChar = Math.log2(charSpace);
-  const pwTotalEntropy = pwEntropyPerChar * count;
-
-  return mode === modes.PW ? pwTotalEntropy : ppTotalEntropy;
+  } else {
+    const flags = Object.keys(chars);
+    const charSpace = flags.reduce((total, flag) => {
+      return params[mode][flag] ? total + chars[flag].length : total;
+    }, 0);
+    const pwEntropyPerChar = Math.log2(charSpace);
+    return pwEntropyPerChar * count;
+  }
 };
