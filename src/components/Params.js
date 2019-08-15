@@ -4,11 +4,13 @@ import config from 'config';
 import PasswordParams from 'components/PasswordParams';
 import PassphraseParams from 'components/PassphraseParams';
 import { media } from 'styles/helpers';
+import { useTransition, animated } from 'react-spring';
 
 const Styles = styled.div`
   background: white;
-  padding: 2rem;
   margin: 0 -2rem;
+  position: relative;
+  transition: all 300ms;
   p {
     font-size: 0.8em;
   }
@@ -18,13 +20,34 @@ const Styles = styled.div`
   `}
 `;
 
+const AnimatedTab = ({ children, ...props }) => {
+  return <animated.div {...props}>{children}</animated.div>;
+};
+
 export default function Params({ mode, values, onChange, reGen }) {
   const { modes } = config;
+  const tabs = {
+    [modes.PP]: () => <PassphraseParams values={values} onChange={onChange} />,
+    [modes.PW]: () => <PasswordParams values={values} onChange={onChange} />
+  };
+  const tabTransitions = useTransition(mode, null, {
+    config: { duration: 200 },
+    initial: { opacity: 1 },
+    from: { opacity: 0, transform: 'scale(1.05)' },
+    enter: { opacity: 1, transform: 'scale(1)' },
+    leave: { opacity: 0, position: 'absolute', transform: 'scale(0.8)' }
+  });
 
   return (
     <Styles>
-      {mode === modes.PW && <PasswordParams values={values} onChange={onChange} />}
-      {mode === modes.PP && <PassphraseParams values={values} onChange={onChange} />}
+      {tabTransitions.map(({ props, key }) => {
+        const Tab = tabs[mode];
+        return (
+          <AnimatedTab key={key} style={props}>
+            <Tab />
+          </AnimatedTab>
+        );
+      })}
     </Styles>
   );
 }
