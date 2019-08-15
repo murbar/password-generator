@@ -62,9 +62,11 @@ export default function About() {
           Use a password manager. There are plenty of options out there. Get one with a
           mobile app that syncs between all your devices, that way you’ll always have your
           passwords on you. Use a long but easy to remember "master"{' '}
-          <a href="https://xkcd.com/936/">passphrase</a> like{' '}
-          <em>craig-accuracy-czech-shall-venice</em> to secure your password vault, and
-          long random passwords for individual accounts. Thankfully, browsers and
+          <a href="https://xkcd.com/936/" title="XKCD comic about password strength">
+            passphrase
+          </a>{' '}
+          like <em>craig-accuracy-czech-shall-venice</em> to secure your password vault,
+          and long random passwords for individual accounts. Thankfully, browsers and
           operating systems now almost all have basic password management built it. And
           with the rise of biometric access controls (Face ID, et al) there’s really no
           excuse not to use long complex passwords everywhere.

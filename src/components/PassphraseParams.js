@@ -49,6 +49,7 @@ export default function PassphraseParams({ values, onChange }) {
           min={3}
           max={8}
           onChange={onChange}
+          title="Adjust word count"
         />
       </InputRow>
       Delimiter
@@ -59,6 +60,7 @@ export default function PassphraseParams({ values, onChange }) {
           value="hyphen"
           checked={ppValues.delimiter === 'hyphen'}
           onChange={onChange}
+          title="Separate words with hyphens"
         />
         <RadioButton
           label="Space"
@@ -66,6 +68,7 @@ export default function PassphraseParams({ values, onChange }) {
           value="space"
           checked={ppValues.delimiter === 'space'}
           onChange={onChange}
+          title="Separate words with spaces"
         />
         <RadioButton
           label="Period"
@@ -73,6 +76,7 @@ export default function PassphraseParams({ values, onChange }) {
           value="period"
           checked={ppValues.delimiter === 'period'}
           onChange={onChange}
+          title="Separate words with periods"
         />
         <RadioButton
           label="123"
@@ -80,6 +84,7 @@ export default function PassphraseParams({ values, onChange }) {
           value="number"
           checked={ppValues.delimiter === 'number'}
           onChange={onChange}
+          title="Separate words with a number"
         />
       </InputRow>
     </Styles>

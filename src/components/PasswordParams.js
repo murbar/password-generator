@@ -39,7 +39,10 @@ export default function PasswordParams({ values, onChange }) {
         Good passwords are at least 12 characters long. Use letters, numbers, & symbols
         &mdash; preferably in random order. Make it as long as your account provider will
         allow, you won’t be typing it anyway once you get a{' '}
-        <a href="#about">password manager</a>.
+        <a href="#about" title="Good password hygiene">
+          password manager
+        </a>
+        .
       </p>
       <InputRow>
         <Slider
@@ -49,23 +52,38 @@ export default function PasswordParams({ values, onChange }) {
           min={8}
           max={48}
           onChange={onChange}
+          title="Adjust password length"
         />
       </InputRow>
       Characters
       <InputRow className="checkboxes">
-        <CheckBox label="abc" name="lower" checked={pwValues.lower} onChange={onChange} />
-        <CheckBox label="ABC" name="upper" checked={pwValues.upper} onChange={onChange} />
+        <CheckBox
+          label="abc"
+          name="lower"
+          checked={pwValues.lower}
+          onChange={onChange}
+          title="Include lowercase letter"
+        />
+        <CheckBox
+          label="ABC"
+          name="upper"
+          checked={pwValues.upper}
+          onChange={onChange}
+          title="Include uppercase letter"
+        />
         <CheckBox
           label="123"
           name="numbers"
           checked={pwValues.numbers}
           onChange={onChange}
+          title="Include numbers"
         />
         <CheckBox
           label="$@!"
           name="symbols"
           checked={pwValues.symbols}
           onChange={onChange}
+          title="Include symbols"
         />
       </InputRow>
     </Styles>
