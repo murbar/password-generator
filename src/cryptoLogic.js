@@ -55,7 +55,6 @@ const interleaveWithNumbers = array => {
 };
 
 export const generatePassphrase = (numWords, options = {}) => {
-  console.log(options);
   const defaults = {
     delimiter: delimiters.hyphen
   };
