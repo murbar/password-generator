@@ -22,6 +22,7 @@ const Styles = styled.div`
     hsla(0, 0%, 0%, 0.05) 1rem,
     hsla(0, 0%, 0%, 0.05) 2rem
   );
+  cursor: default;
   span:first-child {
     svg {
       height: 3em;
