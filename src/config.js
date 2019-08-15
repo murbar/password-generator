@@ -1,4 +1,4 @@
-const version = '2019.8.10';
+const version = '2019.8.15';
 
 const modes = {
   PW: 'password',
