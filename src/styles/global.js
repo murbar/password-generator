@@ -31,7 +31,7 @@ export default createGlobalStyle`
     font-family: ${p => p.theme.fontFamilyHeadings};
     margin: 0 0 0.5em;
     font-weight: 400;
-    color: ${p => p.theme.colors.darkGrey};
+    color: ${p => p.theme.colors.darkGray};
   }
   p { 
     margin: 0 0 0.5em;

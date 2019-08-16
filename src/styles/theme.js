@@ -11,8 +11,8 @@ const colors = {
   green: 'hsl(150, 100%, 50%)',
   fuchsia: 'hsl(300, 100%, 65%)',
   paleYellow: 'hsl(60, 100%, 75%)',
-  lightGrey: 'hsl(0, 0%, 85%)',
-  darkGrey: 'hsl(0, 0%, 20%)'
+  lightGray: 'hsl(0, 0%, 85%)',
+  darkGray: 'hsl(0, 0%, 20%)'
 };
 
 const meterColors = {

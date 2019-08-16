@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Styles = styled.p`
-  background: ${p => p.theme.colors.lightGrey};
+  background: ${p => p.theme.colors.lightGray};
   background: white;
   padding: 2rem;
   font-size: 0.8em;
