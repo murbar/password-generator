@@ -87,7 +87,9 @@ function App() {
     }
   });
 
-  ReactGA.pageview('/');
+  useEffect(() => {
+    ReactGA.pageview('/');
+  }, []);
 
   return (
     <Styles>
@@ -98,11 +100,7 @@ function App() {
         initial={mode === modes.PW ? 'Password' : 'Passphrase'}
         onToggle={m => setMode(m)}
       />
-      <Params
-        mode={mode}
-        values={params}
-        onChange={handleInputChange}
-      />
+      <Params mode={mode} values={params} onChange={handleInputChange} />
       <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
       <ReGenButton onClick={() => generate()} />
