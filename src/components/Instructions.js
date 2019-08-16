@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// import { media } from 'styles/helpers';
 
 const Styles = styled.div`
   margin: 3rem 0;
@@ -9,7 +8,7 @@ const Styles = styled.div`
   }
 `;
 
-export default function Tips() {
+export default function Instructions() {
   return (
     <Styles>
       <h2>How does this work?</h2>
