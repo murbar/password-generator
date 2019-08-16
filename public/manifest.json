@@ -1,6 +1,6 @@
 {
-  "short_name": "CRA Boilerplate",
-  "name": "Create React App Boilerplate",
+  "short_name": "PW Gen",
+  "name": "Secure Password Generator",
   "icons": [
     {
       "src": "favicon.ico",
