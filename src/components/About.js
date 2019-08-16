@@ -59,9 +59,16 @@ export default function About() {
           for every account is pretty much impossible with out a password manager...
         </li>
         <li>
-          Use a password manager. There are plenty of options out there. Get one with a
-          mobile app that syncs between all your devices, that way you’ll always have your
-          passwords on you. Use a long but easy to remember "master"{' '}
+          Use a password manager. You have{' '}
+          <a
+            href="https://www.google.com/search?q=password+manager"
+            title="Google search for 'password manager'"
+          >
+            plenty of options
+          </a>
+          , many of which include a free tier. Get one with a mobile app that syncs
+          between all your devices, that way you’ll always have your passwords on you. Use
+          a long but easy to remember "master"{' '}
           <a href="https://xkcd.com/936/" title="XKCD comic about password strength">
             passphrase
           </a>{' '}
