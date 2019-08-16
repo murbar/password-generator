@@ -5,7 +5,7 @@ import { animated, useSpring } from 'react-spring';
 import { media } from 'styles/helpers';
 import { ReactComponent as CoolFace } from 'images/cool.svg';
 import { ReactComponent as HappyFace } from 'images/smile.svg';
-import { ReactComponent as NervousFace } from 'images/nervous.svg';
+import { ReactComponent as NervousFace } from 'images/eek.svg';
 
 const Styles = styled.div`
   display: flex;
