@@ -102,7 +102,6 @@ function App() {
         mode={mode}
         values={params}
         onChange={handleInputChange}
-        reGen={() => generate()}
       />
       <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
