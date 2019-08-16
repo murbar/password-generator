@@ -33,7 +33,7 @@ export default createGlobalStyle`
     font-weight: 400;
     color: ${p => p.theme.colors.darkGrey};
   }
-  p{ 
+  p { 
     margin: 0 0 0.5em;
   }
   ul, ol {
@@ -47,6 +47,8 @@ export default createGlobalStyle`
   }
   h1, h2, h3, h4, h5, h6, p, li {
     cursor: default;
+  }
+  h1, h2, h3, h4, h5, h6 {
     user-select: none;
   }
 `;
