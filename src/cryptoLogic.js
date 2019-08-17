@@ -22,9 +22,7 @@ export const generatePassword = (length, flags = {}) => {
     numbers: true,
     symbols: true
   };
-  for (const key in defaults) {
-    if (!(key in flags)) flags[key] = defaults[key];
-  }
+  flags = {...defaults,...flags);
 
   let charPool = [];
   for (const key in chars) {
