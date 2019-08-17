@@ -16,15 +16,7 @@ const chars = {
 };
 
 export const generatePassword = (length, flags = {}) => {
-  const defaults = {
-    upper: true,
-    lower: true,
-    numbers: true,
-    symbols: true
-  };
-  for (const key in defaults) {
-    if (!(key in flags)) flags[key] = defaults[key];
-  }
+  flags = { upper: true, lower: true, numbers: true, symbols: true, ...flags };
 
   let charPool = [];
   for (const key in chars) {
@@ -35,13 +27,6 @@ export const generatePassword = (length, flags = {}) => {
     .fill(null)
     .map(() => getRandomElement(charPool))
     .join('');
-};
-
-const delimiters = {
-  hyphen: '-',
-  period: '.',
-  space: ' ',
-  number: null
 };
 
 const interleaveWithNumbers = array => {
@@ -55,12 +40,14 @@ const interleaveWithNumbers = array => {
 };
 
 export const generatePassphrase = (numWords, options = {}) => {
-  const defaults = {
-    delimiter: delimiters.hyphen
+  const delimiters = {
+    hyphen: '-',
+    period: '.',
+    space: ' ',
+    number: null
   };
-  for (const key in defaults) {
-    if (!(key in options)) options[key] = defaults[key];
-  }
+  options = { delimiter: delimiters.hyphen, ...options };
+
   if (!(options.delimiter in delimiters)) {
     options.delimiter = delimiters.hyphen;
   }
