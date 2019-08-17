@@ -45,11 +45,12 @@ function App() {
     if (type === 'range' || type === 'number') value = parseInt(value);
     if (type === 'checkbox') value = checked;
     if (type === 'checkbox' && mode === modes.PW) {
-      const lastChecked =
-        ['upper', 'lower', 'numbers', 'symbols'].map(n => params[mode][n]).filter(v => v)
-          .length === 1;
+      const numChecked = ['upper', 'lower', 'numbers', 'symbols'].reduce(
+        (num, flag) => (params[mode][flag] ? num + 1 : num),
+        0
+      );
       // user should select at least one option
-      if (!value && lastChecked) return;
+      if (!value && numChecked === 1) return;
     }
     setParams(prev => ({
       ...prev,
