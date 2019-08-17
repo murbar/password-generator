@@ -1,24 +1,24 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactGA from 'react-ga';
 import styled from 'styled-components';
-import GlobalStyles from 'styles/global';
 import copy from 'copy-to-clipboard';
+import GlobalStyles from 'styles/global';
 import Header from 'components/Header';
+import ChoiceToggle from 'components/common/ChoiceToggle';
 import Params from 'components/Params';
+import Meter from 'components/Meter';
 import Secrets from 'components/Secrets';
 import ReGenButton from 'components/ReGenButton';
+import Instructions from 'components/Instructions';
 import Disclaimer from 'components/Disclaimer';
 import About from 'components/About';
-import Instructions from 'components/Instructions';
+import Footer from 'components/Footer';
 import useLocalStorageState from 'hooks/useLocalStorageState';
 import useHotKeys from 'hooks/useHotKeys';
 import config from 'config';
+import { media } from 'styles/helpers';
 import { fireHotKey } from 'helpers';
 import { generatePassphrases, generatePasswords, getEntropy } from 'cryptoLogic';
-import Meter from 'components/Meter';
-import { media } from 'styles/helpers';
-import ChoiceToggle from 'components/common/ChoiceToggle';
-import Footer from 'components/Footer';
 
 const Styles = styled.div`
   margin: 0 auto;
