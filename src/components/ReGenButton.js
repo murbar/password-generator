@@ -19,7 +19,7 @@ const Styles = styled.div`
 export default function ReGenButton({ onClick }) {
   return (
     <Styles>
-      <Button onClick={onClick} title="Generate new secrets">
+      <Button onClick={onClick} title="Generate new secrets (R)">
         <RefreshIcon /> Regenerate Secrets
       </Button>
     </Styles>
