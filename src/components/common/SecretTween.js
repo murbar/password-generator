@@ -31,7 +31,7 @@ const convertToString = charCodeArray => {
   }, '');
 };
 
-// does not perform well with lengths > ~100
+// gets sketchy with long strings, > ~500 chars
 export default function StringTween({
   children,
   duration = null,
