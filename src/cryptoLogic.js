@@ -23,10 +23,7 @@ export const generatePassword = (length, flags = {}) => {
     if (flags[key]) charPool = [...charPool, ...chars[key]];
   }
 
-  return Array(length)
-    .fill(null)
-    .map(() => getRandomElement(charPool))
-    .join('');
+  return Array.from({ length }, () => getRandomElement(charPool)).join('');
 };
 
 const interleaveWithNumbers = array => {
@@ -62,15 +59,15 @@ export const generatePassphrase = (numWords, options = {}) => {
 };
 
 export const generatePasswords = (numPasswords = 3, options) => {
-  return Array(numPasswords)
-    .fill(null)
-    .map(() => generatePassword(options.length, options));
+  return Array.from({ length: numPasswords }, () =>
+    generatePassword(options.length, options)
+  );
 };
 
 export const generatePassphrases = (numPhrases = 3, options) => {
-  return Array(numPhrases)
-    .fill(null)
-    .map(() => generatePassphrase(options.length, options));
+  return Array.from({ length: numPhrases }, () =>
+    generatePassphrase(options.length, options)
+  );
 };
 
 export const getEntropy = (params, mode) => {
