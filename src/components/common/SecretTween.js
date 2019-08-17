@@ -9,6 +9,7 @@ const convertToCharCodeArray = string => {
 
 const normalizeCharCode = code => {
   // return a letter or number when when spring bounces beyond char code range
+  // tried setting clamp -> true in the spring config, but it didn't seem to have the intended effect
   if (code === 64) return 66;
   if (code === 91) return 89;
   if (code === 96) return 98;
