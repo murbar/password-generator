@@ -40,10 +40,12 @@ export default function StringTween({
 }) {
   const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
+  const precision = 1;
+  const friction = 50;
   const config = {
-    // low precision since we're tweening integers
-    // cuts number of operations in half, roughly
-    config: { precision: 1 },
+    // low precision since we're interpolating integers
+    // cuts number of operations by ~1/2
+    config: { precision, friction },
     from: {
       chars: from
     },
@@ -55,11 +57,11 @@ export default function StringTween({
   const scramble = () => {
     if (scrambleOnClick) {
       setSpring({
-        config: { duration: 100, precision: 1 },
+        config: { duration: 100, precision },
         to: { chars: convertToCharCodeArray(generatePassword(children.length)) },
         onRest: () => {
           setSpring({
-            config: { duration: undefined, precision: 1 },
+            config: { duration: undefined, precision, friction },
             to: { chars: convertToCharCodeArray(children) }
           });
         }
