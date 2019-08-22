@@ -49,13 +49,19 @@ export default function Header() {
     <Styles>
       <h1>
         <span>
-          <SecretTween scrambleOnClick>Generate</SecretTween>
+          <SecretTween scrambleOnClick alphaNumeric>
+            Generate
+          </SecretTween>
         </span>
         <span>
-          <SecretTween scrambleOnClick>secure passwords</SecretTween>
+          <SecretTween scrambleOnClick alphaNumeric>
+            secure passwords
+          </SecretTween>
         </span>
         <span>
-          <SecretTween scrambleOnClick>instantly</SecretTween>
+          <SecretTween scrambleOnClick alphaNumeric>
+            instantly
+          </SecretTween>
         </span>
       </h1>
     </Styles>

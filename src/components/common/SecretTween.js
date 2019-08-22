@@ -10,16 +10,17 @@ const convertToCharCodeArray = string => {
 const normalizeCharCode = code => {
   // return a letter or number when when spring bounces beyond char code range
   // tried setting clamp -> true in the spring config, but it didn't seem to have the intended effect
-  if (code === 64) return 66;
-  if (code === 91) return 89;
-  if (code === 96) return 98;
-  if (code === 123) return 121;
-  if (code === 47) return 49;
-  if (code === 58) return 56;
+  // react-spring docs are less helpful than they could be
+  if (code === 64) return 66; // no @
+  if (code === 91) return 89; // no [
+  if (code === 96) return 98; // no `
+  if (code === 123) return 121; // no {
+  if (code === 47) return 49; // no /
+  if (code === 58) return 56; // no :
   return code;
 };
 
-const convertToString = charCodeArray => {
+const convertToString = (charCodeArray, alphaNumeric = false) => {
   // return charCodeArray
   //   .map(c => Math.floor(c))
   //   .map(c => normalizeCharCode(c))
@@ -28,7 +29,10 @@ const convertToString = charCodeArray => {
 
   // reduce profiles 5-20x faster than the code above
   return charCodeArray.reduce((result, code) => {
-    return result + String.fromCharCode(normalizeCharCode(Math.floor(code)));
+    const normalized = alphaNumeric
+      ? normalizeCharCode(Math.floor(code))
+      : Math.floor(code);
+    return result + String.fromCharCode(normalized);
   }, '');
 };
 
@@ -36,7 +40,8 @@ const convertToString = charCodeArray => {
 export default function StringTween({
   children,
   duration = null,
-  scrambleOnClick = false
+  scrambleOnClick = false,
+  alphaNumeric = false
 }) {
   const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
@@ -49,7 +54,9 @@ export default function StringTween({
     from: {
       chars: from
     },
-    chars: to
+    to: {
+      chars: to
+    }
   };
   if (duration) config.config = { duration };
   const [spring, setSpring] = useSpring(() => config);
@@ -71,7 +78,9 @@ export default function StringTween({
 
   return (
     <animated.span onClick={scramble}>
-      {spring.chars.interpolate((...charCodes) => convertToString(charCodes))}
+      {spring.chars.interpolate((...charCodes) =>
+        convertToString(charCodes, alphaNumeric)
+      )}
     </animated.span>
   );
 }
