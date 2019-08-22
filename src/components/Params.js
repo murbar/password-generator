@@ -27,7 +27,7 @@ const AnimatedTab = ({ children, ...props }) => {
 export default function Params({ mode, values, onChange }) {
   const { modes } = config;
   const tabTransitions = useTransition(mode, mode, {
-    config: { duration: 200 },
+    config: { duration: 200, unique: true },
     initial: { opacity: 1 },
     from: { opacity: 0, transform: 'scale(1.05)' },
     enter: { opacity: 1, transform: 'scale(1)' },
