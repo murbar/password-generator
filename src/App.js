@@ -25,6 +25,7 @@ const Styles = styled.div`
   ${media.tablet`
     max-width: 66rem;
   `}
+  ${p => p.isPwaMode && 'padding-bottom: 3rem;'}
 `;
 
 ReactGA.initialize(config.GAPropertyId);
@@ -38,6 +39,7 @@ function App() {
     [modes.PP]: []
   });
   const entropy = getEntropy(params, mode);
+  const isPwaMode = window.location.pathname === '/pwa';
 
   const handleInputChange = e => {
     let { name, value, type, checked } = e.target;
@@ -93,22 +95,31 @@ function App() {
   }, []);
 
   return (
-    <Styles>
+    <Styles isPwaMode={isPwaMode}>
       <GlobalStyles />
-      <Header />
+      <Header isPwaMode={isPwaMode} />
       <ChoiceToggle
         choices={{ Password: modes.PW, Passphrase: modes.PP }}
         initial={mode === modes.PW ? 'Password' : 'Passphrase'}
         onToggle={m => setMode(m)}
       />
-      <Params mode={mode} values={params} onChange={handleInputChange} />
+      <Params
+        mode={mode}
+        values={params}
+        onChange={handleInputChange}
+        isPwaMode={isPwaMode}
+      />
       <Meter entropy={entropy} />
       <Secrets outputs={outputs[mode]} />
       <ReGenButton onClick={() => generate()} />
-      <Instructions />
-      <Disclaimer />
-      <About />
-      <Footer />
+      {!isPwaMode && (
+        <>
+          <Instructions />
+          <Disclaimer />
+          <About />
+          <Footer />
+        </>
+      )}
     </Styles>
   );
 }

@@ -1,10 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import InputRow from 'components/common/InputRow';
 import RangeSlider from 'components/common/RangeSlider';
 import RadioButton from 'components/common/RadioButton';
 import config from 'config';
 import { media } from 'styles/helpers';
+
+const Slider = styled(RangeSlider)`
+  ${media.tablet`
+    width: 70%;
+  `}
+`;
 
 const Styles = styled.div`
   padding: 2rem;
@@ -22,25 +28,29 @@ const Styles = styled.div`
     }
   }
   `}
+  ${p =>
+    p.isPwaMode &&
+    css`
+      padding: 1rem 2rem;
+      & div:first-child {
+        margin-top: 0;
+      }
+    `}
 `;
 
-const Slider = styled(RangeSlider)`
-  ${media.tablet`
-    width: 70%;
-  `}
-`;
-
-export default function PassphraseParams({ values, onChange }) {
+export default function PassphraseParams({ values, onChange, isPwaMode }) {
   const { modes } = config;
   const ppValues = values[modes.PP];
 
   return (
-    <Styles>
-      <p>
-        Long passphrases are easy to remember (and type!) and are often just as secure as
-        a random string of characters, especially when they're longer than a password
-        would be. Makes a great choice for your "master" password.
-      </p>
+    <Styles isPwaMode={isPwaMode}>
+      {!isPwaMode && (
+        <p>
+          Long passphrases are easy to remember (and type!) and are often just as secure
+          as a random string of characters, especially when they're longer than a password
+          would be. Makes a great choice for your "master" password.
+        </p>
+      )}
       <InputRow>
         <Slider
           label="Word count"

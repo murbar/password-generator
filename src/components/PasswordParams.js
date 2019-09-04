@@ -1,10 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import config from 'config';
 import { media } from 'styles/helpers';
 import InputRow from 'components/common/InputRow';
 import CheckBox from 'components/common/CheckBox';
 import RangeSlider from 'components/common/RangeSlider';
+
+const Slider = styled(RangeSlider)`
+  ${media.tablet`
+    width: 70%;
+  `}
+`;
 
 const Styles = styled.div`
   padding: 2rem;
@@ -22,28 +28,32 @@ const Styles = styled.div`
     }
   }
   `}
+  ${p =>
+    p.isPwaMode &&
+    css`
+      padding: 1rem 2rem;
+      & div:first-child {
+        margin-top: 0;
+      }
+    `}
 `;
 
-const Slider = styled(RangeSlider)`
-  ${media.tablet`
-    width: 70%;
-  `}
-`;
-
-export default function PasswordParams({ values, onChange }) {
+export default function PasswordParams({ values, onChange, isPwaMode }) {
   const { modes } = config;
   const pwValues = values[modes.PW];
   return (
-    <Styles>
-      <p>
-        Good passwords are at least 12 characters long. If you can, include letters,
-        numbers, & symbols in random order. Make it as long as your account provider will
-        allow, you won’t be typing it anyway once you get a{' '}
-        <a href="#about" title="Good password hygiene">
-          password manager
-        </a>
-        .
-      </p>
+    <Styles isPwaMode={isPwaMode}>
+      {!isPwaMode && (
+        <p>
+          Good passwords are at least 12 characters long. If you can, include letters,
+          numbers, & symbols in random order. Make it as long as your account provider
+          will allow, you won’t be typing it anyway once you get a{' '}
+          <a href="#about" title="Good password hygiene">
+            password manager
+          </a>
+          .
+        </p>
+      )}
       <InputRow>
         <Slider
           label="Length"

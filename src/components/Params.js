@@ -24,7 +24,7 @@ const AnimatedTab = ({ children, ...props }) => {
   return <animated.div {...props}>{children}</animated.div>;
 };
 
-export default function Params({ mode, values, onChange }) {
+export default function Params({ mode, values, onChange, isPwaMode }) {
   const { modes } = config;
   const tabTransitions = useTransition(mode, mode, {
     config: { duration: 200, unique: true },
@@ -40,9 +40,13 @@ export default function Params({ mode, values, onChange }) {
         return (
           <AnimatedTab key={key} style={props}>
             {item === modes.PW ? (
-              <PasswordParams values={values} onChange={onChange} />
+              <PasswordParams values={values} onChange={onChange} isPwaMode={isPwaMode} />
             ) : (
-              <PassphraseParams values={values} onChange={onChange} />
+              <PassphraseParams
+                values={values}
+                onChange={onChange}
+                isPwaMode={isPwaMode}
+              />
             )}
           </AnimatedTab>
         );

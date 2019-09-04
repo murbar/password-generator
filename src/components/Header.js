@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import SecretTween from 'components/common/SecretTween';
 import { media } from 'styles/helpers';
 
@@ -10,7 +10,7 @@ const Styles = styled.header`
     line-height: 1;
     margin: 0;
   }
-  span {
+  h1 > span {
     transform: rotate(-3deg);
     transform-origin: bottom left;
     display: block;
@@ -28,7 +28,6 @@ const Styles = styled.header`
   ${media.tablet`
     padding: 5rem 0 3rem;
     span {
-      display: block;
       &:first-child {
       }
       &:nth-child(2) {
@@ -42,28 +41,63 @@ const Styles = styled.header`
   ${media.desktop`
     padding: 7rem 0 4rem;
   `}
+  ${p =>
+    p.isPwaMode &&
+    css`
+      padding: 2rem 0 1.5rem;
+      h1 > span {
+        display: inline-block;
+        transform: rotate(0);
+        &:first-child,
+        &:nth-child(2),
+        &:nth-child(3) {
+          font-size: 1em;
+          margin-right: 0.25em;
+        }
+      }
+    `}
 `;
 
-export default function Header() {
+export default function Header({ isPwaMode }) {
   return (
-    <Styles>
-      <h1>
-        <span>
-          <SecretTween scrambleOnClick alphaNumeric>
-            Generate
-          </SecretTween>
-        </span>
-        <span>
-          <SecretTween scrambleOnClick alphaNumeric>
-            secure passwords
-          </SecretTween>
-        </span>
-        <span>
-          <SecretTween scrambleOnClick alphaNumeric>
-            instantly
-          </SecretTween>
-        </span>
-      </h1>
+    <Styles isPwaMode={isPwaMode}>
+      {!isPwaMode ? (
+        <h1>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              Generate
+            </SecretTween>
+          </span>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              secure passwords
+            </SecretTween>
+          </span>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              instantly
+            </SecretTween>
+          </span>
+        </h1>
+      ) : (
+        <h1>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              Secure
+            </SecretTween>
+          </span>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              PW
+            </SecretTween>
+          </span>
+          <span>
+            <SecretTween scrambleOnClick alphaNumeric>
+              Gen
+            </SecretTween>
+          </span>
+        </h1>
+      )}
     </Styles>
   );
 }
