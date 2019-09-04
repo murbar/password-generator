@@ -7,6 +7,7 @@ export default createGlobalStyle`
   html {
     font-size: 62.5%;
     margin: 0;
+    min-height: 100%;
   }
   body {
     position: relative;
