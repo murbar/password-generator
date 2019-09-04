@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-        <linearGradient x1="50%" y1="100%" x2="72.4532739%" y2="4.61458047%" id="linearGradient-1">
+        <linearGradient x1="50%" y1="100%" x2="71.5092711%" y2="8.62486884%" id="linearGradient-1">
             <stop stop-color="#E38E0B" offset="0%"></stop>
-            <stop stop-color="#FFEC3E" offset="46.8771368%"></stop>
+            <stop stop-color="#FFD934" offset="44.8925217%"></stop>
             <stop stop-color="#FFFEE9" offset="100%"></stop>
         </linearGradient>
         <circle id="path-2" cx="50" cy="50" r="48"></circle>
@@ -28,7 +28,7 @@
             <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0.768627451   0 0 0 0 0.396078431   0 0 0 0 0.00392156863  0 0 0 1 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
-            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
+            <feMorphology radius="2" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
             <feGaussianBlur stdDeviation="2.5" in="shadowSpreadInner2" result="shadowBlurInner2"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner2" result="shadowOffsetInner2"></feOffset>
             <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
@@ -44,7 +44,7 @@
             <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0.768627451   0 0 0 0 0.396078431   0 0 0 0 0.00392156863  0 0 0 1 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
-            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
+            <feMorphology radius="2" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
             <feGaussianBlur stdDeviation="2.5" in="shadowSpreadInner2" result="shadowBlurInner2"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner2" result="shadowOffsetInner2"></feOffset>
             <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
@@ -54,13 +54,14 @@
                 <feMergeNode in="shadowMatrixInner2"></feMergeNode>
             </feMerge>
         </filter>
-        <path d="M52.1488235,91.4488889 C48.2829218,84.3814461 45.35,76.9485575 45.35,69.15 C45.35,61.3514425 48.2829218,53.9185539 52.1488235,46.8511111 C52.6229435,46.0503664 53.2611725,45.65 54.0635294,45.65 C54.5011787,45.65 54.8749984,45.7892579 55.185,46.0677778 C55.4950015,46.3462977 55.65,46.6944424 55.65,47.1122222 C55.65,47.3559271 55.5952947,47.6170356 55.4858824,47.8955556 C52.4223376,54.7889234 49.8905882,61.8736673 49.8905882,69.15 C49.8905882,76.4263327 52.4223376,83.5110766 55.4858824,90.4044444 C55.5952947,90.7177793 55.65,90.9788878 55.65,91.1877778 C55.65,91.6403726 55.4950015,91.9972209 55.185,92.2583333 C54.8749984,92.5194457 54.5011787,92.65 54.0635294,92.65 C53.2611725,92.65 52.6229435,92.2496336 52.1488235,91.4488889 Z" id="path-8"></path>
+        <path d="M52.1488235,91.4488889 C48.2829218,84.3814461 45.35,76.9485575 45.35,69.15 C45.35,61.3514425 48.2829218,53.9185539 52.1488235,46.8511111 C52.6229435,46.0503664 53.2611725,45.65 54.0635294,45.65 C54.5011787,45.65 54.8749984,45.7892579 55.185,46.0677778 C55.4950015,46.3462977 55.65,46.6944424 55.65,47.1122222 C55.65,47.3559271 55.5952947,47.6170356 55.4858824,47.8955556 C52.4223376,54.7889234 49.8905882,61.8736673 49.8905882,69.15 C49.8905882,76.4263327 52.4223376,83.5110766 55.4858824,90.4044444 C55.5952947,90.7177793 55.65,90.9788878 55.65,91.1877778 C55.65,91.6403726 55.4950016,91.9972209 55.185,92.2583333 C54.8749985,92.5194457 54.5011787,92.65 54.0635294,92.65 C53.2611725,92.65 52.6229435,92.2496336 52.1488235,91.4488889 Z" id="path-8"></path>
         <filter x="-19.4%" y="-4.3%" width="138.8%" height="108.5%" filterUnits="objectBoundingBox" id="filter-9">
             <feGaussianBlur stdDeviation="2" in="SourceAlpha" result="shadowBlurInner1"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0.441039741   0 0 0 0 0.211583197   0 0 0 0 0  0 0 0 1 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
-            <feGaussianBlur stdDeviation="1.5" in="SourceAlpha" result="shadowBlurInner2"></feGaussianBlur>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
+            <feGaussianBlur stdDeviation="1.5" in="shadowSpreadInner2" result="shadowBlurInner2"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner2" result="shadowOffsetInner2"></feOffset>
             <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
             <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowInnerInner2" result="shadowMatrixInner2"></feColorMatrix>
@@ -70,7 +71,7 @@
             </feMerge>
         </filter>
     </defs>
-    <g id="smile-copy-3" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="smile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="head">
             <use fill="url(#linearGradient-1)" fill-rule="evenodd" xlink:href="#path-2"></use>
             <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
@@ -85,7 +86,7 @@
                 <use fill="black" fill-opacity="1" filter="url(#filter-7)" xlink:href="#path-6"></use>
             </g>
         </g>
-        <g id="smile" transform="translate(50.500000, 69.150000) rotate(-90.000000) translate(-50.500000, -69.150000) ">
+        <g transform="translate(50.500000, 69.150000) rotate(-90.000000) translate(-50.500000, -69.150000) ">
             <use fill="#BF7608" fill-rule="evenodd" xlink:href="#path-8"></use>
             <use fill="black" fill-opacity="1" filter="url(#filter-9)" xlink:href="#path-8"></use>
         </g>

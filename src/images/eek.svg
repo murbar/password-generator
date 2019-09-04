@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-        <linearGradient x1="50%" y1="100%" x2="72.4532739%" y2="4.61458047%" id="linearGradient-1">
+        <linearGradient x1="50%" y1="100%" x2="71.5092711%" y2="8.62486884%" id="linearGradient-1">
             <stop stop-color="#E38E0B" offset="0%"></stop>
-            <stop stop-color="#FFEC3E" offset="46.8771368%"></stop>
+            <stop stop-color="#FFD934" offset="44.8925217%"></stop>
             <stop stop-color="#FFFEE9" offset="100%"></stop>
         </linearGradient>
         <circle id="path-2" cx="50" cy="50" r="48"></circle>
@@ -28,7 +28,7 @@
             <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0.768627451   0 0 0 0 0.396078431   0 0 0 0 0.00392156863  0 0 0 1 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
-            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
+            <feMorphology radius="2" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
             <feGaussianBlur stdDeviation="3" in="shadowSpreadInner2" result="shadowBlurInner2"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner2" result="shadowOffsetInner2"></feOffset>
             <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
@@ -44,7 +44,7 @@
             <feOffset dx="0" dy="0" in="shadowBlurInner1" result="shadowOffsetInner1"></feOffset>
             <feComposite in="shadowOffsetInner1" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner1"></feComposite>
             <feColorMatrix values="0 0 0 0 0.768627451   0 0 0 0 0.396078431   0 0 0 0 0.00392156863  0 0 0 1 0" type="matrix" in="shadowInnerInner1" result="shadowMatrixInner1"></feColorMatrix>
-            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
+            <feMorphology radius="2" operator="erode" in="SourceAlpha" result="shadowSpreadInner2"></feMorphology>
             <feGaussianBlur stdDeviation="3" in="shadowSpreadInner2" result="shadowBlurInner2"></feGaussianBlur>
             <feOffset dx="0" dy="0" in="shadowBlurInner2" result="shadowOffsetInner2"></feOffset>
             <feComposite in="shadowOffsetInner2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="shadowInnerInner2"></feComposite>
