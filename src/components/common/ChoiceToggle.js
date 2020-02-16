@@ -48,7 +48,7 @@ const Styles = styled.div`
 
 export default function ChoiceToggle({ choices, onToggle, initial }) {
   const labels = Object.keys(choices);
-  const [selected, setSelected] = useState(initial || labels[0]);
+  const [selected, setSelected] = useState(initial ?? labels[0]);
 
   const handleClick = label => {
     setSelected(label);

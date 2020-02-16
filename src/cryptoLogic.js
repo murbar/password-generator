@@ -2,7 +2,7 @@ import wordList from 'wordList';
 import config from 'config';
 
 export const getRandomSecure = () =>
-  crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
+  window.crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
 
 export const getRandomElement = array => {
   return array[Math.floor(getRandomSecure() * array.length)];
