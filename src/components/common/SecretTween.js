@@ -12,8 +12,8 @@ const normalizeCharCode = code => {
   // tried setting clamp -> true in the spring config, but it didn't seem to have the intended effect
   // react-spring docs are less helpful than they could be
   if (code === 64) return 66; // no @
-  if (code === 91) return 89; // no [
-  if (code === 96) return 98; // no `
+  if (code === 91 || code === 92 || code === 93) return 89; // no [
+  if (code === 94 || code === 95 || code === 96) return 98; // no `
   if (code === 123) return 121; // no {
   if (code === 47) return 49; // no /
   if (code === 58) return 56; // no :
