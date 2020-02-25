@@ -8,3 +8,16 @@
 	from="/*"
 	to="index.html"
 	status=200
+
+[build]
+  	# base = ""
+	publish = "build/"
+	command = "yarn build"
+	# functions = "functions/"
+
+[[headers]]
+	for = "static/*"
+	[headers.values]
+		cache-control = '''
+		public,
+		max-age=31536000'''
