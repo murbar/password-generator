@@ -10,3 +10,5 @@ Please share your feedback - let me know if this tool is useful for you, or if y
 Built with React, August 2019.
 
 https://pwgen.joelb.dev/
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/551c4950-4f62-49fd-b020-8516895a1b8f/deploy-status)](https://app.netlify.com/sites/pwgen-vite/deploys)

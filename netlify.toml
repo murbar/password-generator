@@ -10,14 +10,8 @@
 	status=200
 
 [build]
-  	# base = ""
-	publish = "dist"
-	command = "npm run build"
-	# functions = "functions/"
+  command = "npm run build"
+  functions = "netlify/functions"
+  publish = "dist"
 
-[[headers]]
-	for = "static/*"
-	[headers.values]
-		cache-control = '''
-		public,
-		max-age=31536000'''
+  ## more info on configuring this file: https://docs.netlify.com/configure-builds/file-based-configuration/
