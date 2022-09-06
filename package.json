@@ -1,7 +1,7 @@
 {
-  "name": "pwgen-vite",
+  "name": "password-generator",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +12,7 @@
     "copy-to-clipboard": "^3.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-ga": "^2.6.0",
+    "react-ga": "^3.3.1",
     "react-scripts": "^5.0.1",
     "react-spring": "^9.5.2",
     "styled-components": "^4.3.2"
