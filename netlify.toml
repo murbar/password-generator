@@ -12,7 +12,7 @@
 [build]
   	# base = ""
 	publish = "dist"
-	command = "npm run vite build"
+	command = "npm run build"
 	# functions = "functions/"
 
 [[headers]]
