@@ -41,7 +41,7 @@ const Styles = styled.header`
   ${media.desktop`
     padding: 7rem 0 4rem;
   `}
-  ${p =>
+  ${(p) =>
     p.isPwaMode &&
     css`
       padding: 2rem 0 1.5rem;
@@ -65,17 +65,17 @@ export default function Header({ isPwaMode }) {
         <h1>
           <span>
             <SecretTween scrambleOnClick alphaNumeric>
-              Generate
+              Secure
             </SecretTween>
           </span>
           <span>
             <SecretTween scrambleOnClick alphaNumeric>
-              secure passwords
+              Password
             </SecretTween>
           </span>
           <span>
             <SecretTween scrambleOnClick alphaNumeric>
-              instantly
+              Generator
             </SecretTween>
           </span>
         </h1>
