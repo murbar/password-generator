@@ -26,8 +26,8 @@ const AnimatedTab = ({ children, ...props }) => {
 
 export default function Params({ mode, values, onChange, isPwaMode }) {
   const { modes } = config;
-  const tabTransitions = useTransition(mode, mode, {
-    config: { duration: 200, unique: true },
+  const tabTransitions = useTransition(mode, {
+    config: { duration: 200 },
     initial: { opacity: 1 },
     from: { opacity: 0, transform: 'scale(1.05)' },
     enter: { opacity: 1, transform: 'scale(1)' },
@@ -36,9 +36,9 @@ export default function Params({ mode, values, onChange, isPwaMode }) {
 
   return (
     <Styles>
-      {tabTransitions.map(({ item, props, key }) => {
+      {tabTransitions(( props, item ) => {
         return (
-          <AnimatedTab key={key} style={props}>
+          <AnimatedTab style={props}>
             {item === modes.PW ? (
               <PasswordParams values={values} onChange={onChange} isPwaMode={isPwaMode} />
             ) : (
