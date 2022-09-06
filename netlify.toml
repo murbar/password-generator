@@ -12,7 +12,7 @@
 [build]
   	# base = ""
 	publish = "build/"
-	command = "yarn build"
+	command = "npm build"
 	# functions = "functions/"
 
 [[headers]]
