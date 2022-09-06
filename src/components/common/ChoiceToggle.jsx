@@ -68,4 +68,3 @@ export default function ChoiceToggle({ choices, onToggle, initial }) {
     </Styles>
   );
 }
-

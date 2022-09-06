@@ -1,4 +1,4 @@
-import { media } from './helpers';
+import { media } from 'styles/helpers';
 import config from 'config';
 
 const { strengthsEnum } = config;
@@ -12,20 +12,20 @@ const colors = {
   fuchsia: 'hsl(300, 100%, 65%)',
   paleYellow: 'hsl(60, 100%, 75%)',
   lightGray: 'hsl(0, 0%, 85%)',
-  darkGray: 'hsl(0, 0%, 20%)'
+  darkGray: 'hsl(0, 0%, 20%)',
 };
 
 const meterColors = {
   [strengthsEnum.OK]: colors.tomato,
   [strengthsEnum.GOOD]: colors.blue,
-  [strengthsEnum.STRONG]: colors.green
+  [strengthsEnum.STRONG]: colors.green,
 };
 
 const theme = {
   colors: {
     ...colors,
     background: colors.offWhite,
-    foreground: colors.offBlack
+    foreground: colors.offBlack,
   },
   meterColors,
   inputBorderRadius: `0.5rem`,
@@ -33,7 +33,7 @@ const theme = {
   fontFamily: "'Roboto Mono', sans-serif",
   fontFamilyHeadings: "'Contrail One', sans-serif",
   borderRadius: '0.2rem',
-  media
+  media,
 };
 
 export default theme;

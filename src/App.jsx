@@ -113,12 +113,12 @@ function App() {
       <Secrets outputs={outputs[mode]} />
       <ReGenButton onClick={() => generate()} />
       {!isPwaMode && (
-        <>
+        <React.Fragment>
           <Instructions />
           <Disclaimer />
           <About />
           <Footer />
-        </>
+        </React.Fragment>
       )}
     </Styles>
   );

@@ -1,5 +1,5 @@
-import wordList from 'wordList';
-import config from 'config';
+import wordList from './wordList';
+import config from './config';
 
 export const getRandomSecure = () =>
   window.crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;

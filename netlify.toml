@@ -11,8 +11,8 @@
 
 [build]
   	# base = ""
-	publish = "build/"
-	command = "npm build"
+	publish = "dist"
+	command = "vite build"
 	# functions = "functions/"
 
 [[headers]]
