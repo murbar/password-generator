@@ -4,7 +4,7 @@ import config from 'config';
 export const getRandomSecure = () =>
   window.crypto.getRandomValues(new Uint32Array(1))[0] / 2 ** 32;
 
-export const getRandomElement = array => {
+export const getRandomElement = (array) => {
   return array[Math.floor(getRandomSecure() * array.length)];
 };
 
@@ -12,7 +12,7 @@ const chars = {
   upper: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
   lower: 'abcdefghijklmnopqrstuvwxyz'.split(''),
   numbers: '0123456789'.split(''),
-  symbols: '~!@#$%^&*_-+?.:;'.split('')
+  symbols: '~!@#$%^&*_-+?.:;'.split(''),
 };
 
 export const generatePassword = (length, flags = {}) => {
@@ -29,7 +29,7 @@ export const generatePassword = (length, flags = {}) => {
     .join('');
 };
 
-const interleaveWithNumbers = array => {
+const interleaveWithNumbers = (array) => {
   return array.reduce((acc, cur, i) => {
     if (i !== array.length - 1) {
       return [...acc, cur, getRandomElement(chars.numbers)];
@@ -44,7 +44,8 @@ export const generatePassphrase = (numWords, options = {}) => {
     hyphen: '-',
     period: '.',
     space: ' ',
-    number: null
+    number: null,
+    noDelimiter: '',
   };
   options = { delimiter: delimiters.hyphen, ...options };
 

@@ -28,7 +28,7 @@ const Styles = styled.div`
     }
   }
   `}
-  ${p =>
+  ${(p) =>
     p.isPwaMode &&
     css`
       padding: 1rem 2rem;
@@ -95,6 +95,14 @@ export default function PassphraseParams({ values, onChange, isPwaMode }) {
           checked={ppValues.delimiter === 'number'}
           onChange={onChange}
           title="Separate words with a number"
+        />
+        <RadioButton
+          label="None"
+          name="delimiter"
+          value="noDelimiter"
+          checked={ppValues.delimiter === 'noDelimiter'}
+          onChange={onChange}
+          title="Concatenate words"
         />
       </InputRow>
     </Styles>
