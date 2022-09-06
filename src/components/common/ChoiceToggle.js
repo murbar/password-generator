@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { media } from 'styles/helpers';
 
@@ -70,8 +69,3 @@ export default function ChoiceToggle({ choices, onToggle, initial }) {
   );
 }
 
-ChoiceToggle.propTypes = {
-  choices: PropTypes.object.isRequired,
-  onToggle: PropTypes.func,
-  initial: PropTypes.string
-};

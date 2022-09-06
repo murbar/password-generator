@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { animated, useSpring } from 'react-spring';
 import { generatePassword } from 'cryptoLogic';
 
-const convertToCharCodeArray = string => {
-  return string.split('').map(ch => ch.charCodeAt(0));
+const convertToCharCodeArray = (string) => {
+  return string.split('').map((ch) => ch.charCodeAt(0));
 };
 
-const normalizeCharCode = code => {
+const normalizeCharCode = (code) => {
   // return a letter or number when when spring bounces beyond char code range
   // tried setting clamp -> true in the spring config, but it didn't seem to have the intended effect
   // react-spring docs are less helpful than they could be
@@ -41,7 +40,7 @@ export default function StringTween({
   children,
   duration = null,
   scrambleOnClick = false,
-  alphaNumeric = false
+  alphaNumeric = false,
 }) {
   const from = convertToCharCodeArray(generatePassword(children.length));
   const to = convertToCharCodeArray(children);
@@ -52,11 +51,11 @@ export default function StringTween({
     // cuts number of operations by ~1/2
     config: { precision, friction },
     from: {
-      chars: from
+      chars: from,
     },
     to: {
-      chars: to
-    }
+      chars: to,
+    },
   };
   if (duration) config.config = { duration };
   const [spring, setSpring] = useSpring(() => config);
@@ -69,9 +68,9 @@ export default function StringTween({
         onRest: () => {
           setSpring({
             config: { duration: undefined, precision, friction },
-            to: { chars: convertToCharCodeArray(children) }
+            to: { chars: convertToCharCodeArray(children) },
           });
-        }
+        },
       });
     }
   };
@@ -84,7 +83,3 @@ export default function StringTween({
     </animated.span>
   );
 }
-
-StringTween.propTypes = {
-  children: PropTypes.string.isRequired
-};
